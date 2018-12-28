@@ -1,0 +1,5 @@
+C:\home\aei\BD2-proj\2016\Przychodnia_01\BizzLayer\bin\Release\BizzLayer.dll
+C:\home\aei\BD2-proj\2016\Przychodnia_01\BizzLayer\bin\Release\BizzLayer.pdb
+C:\home\aei\BD2-proj\2016\Przychodnia_01\BizzLayer\obj\Release\BizzLayer.csprojResolveAssemblyReference.cache
+C:\home\aei\BD2-proj\2016\Przychodnia_01\BizzLayer\obj\Release\BizzLayer.dll
+C:\home\aei\BD2-proj\2016\Przychodnia_01\BizzLayer\obj\Release\BizzLayer.pdb
