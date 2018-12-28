@@ -1,0 +1,11 @@
+C:\home\aei\BD2-proj\2016\Przychodnia_01\Przychodnia_3tier\DataLayer\bin\Debug\DataLayer.dll.config
+C:\home\aei\BD2-proj\2016\Przychodnia_01\Przychodnia_3tier\DataLayer\bin\Debug\DataLayer.dll
+C:\home\aei\BD2-proj\2016\Przychodnia_01\Przychodnia_3tier\DataLayer\bin\Debug\DataLayer.pdb
+C:\home\aei\BD2-proj\2016\Przychodnia_01\Przychodnia_3tier\DataLayer\obj\Debug\DataLayer.dll
+C:\home\aei\BD2-proj\2016\Przychodnia_01\Przychodnia_3tier\DataLayer\obj\Debug\DataLayer.pdb
+C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.dll.config
+C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.dll
+C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.pdb
+C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.dll
+C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.pdb
