@@ -21,7 +21,10 @@ namespace BizzLayer
                       (String.IsNullOrEmpty(searchCrit.LastName) || el.LastName.StartsWith(searchCrit.LastName))
                       &&
                       ((searchCrit.IdPatient == 0) || el.IdPatient == searchCrit.IdPatient)
-                      // && inne ...
+                      &&
+                      (String.IsNullOrEmpty(searchCrit.FirstName) || el.FirstName.StartsWith(searchCrit.FirstName))
+                      &&
+                      (String.IsNullOrEmpty(searchCrit.PESEL) || el.PESEL.StartsWith(searchCrit.PESEL))
                       select el;
             return res;
         }

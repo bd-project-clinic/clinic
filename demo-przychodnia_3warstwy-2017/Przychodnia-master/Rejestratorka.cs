@@ -30,6 +30,8 @@ namespace Przychodnia
             // budowa kryteriów
             patientSearchCriteria = new Patient();
             patientSearchCriteria.LastName = textBox1.Text;
+            patientSearchCriteria.FirstName = textBox4.Text;
+            patientSearchCriteria.PESEL = textBox3.Text;
 
             // ładowanie obiektu dataGridView
             dataGridView1.Columns.Clear();

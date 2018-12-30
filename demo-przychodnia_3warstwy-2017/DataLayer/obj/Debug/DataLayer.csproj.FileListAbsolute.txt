@@ -9,3 +9,9 @@ C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\Dat
 C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
 C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.dll
 C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.dll.config
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.pdb

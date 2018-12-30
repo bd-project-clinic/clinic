@@ -17,3 +17,10 @@ C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\Dat
 C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.csprojResolveAssemblyReference.cache
 C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.dll
 C:\home\aei\BD2-proj\2017\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.pdb
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\BizzLayer.dll
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\BizzLayer.pdb
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\DataLayer.dll
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\DataLayer.pdb
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.csprojResolveAssemblyReference.cache
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.dll
+C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.pdb

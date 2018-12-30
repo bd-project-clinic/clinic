@@ -256,6 +256,7 @@
             this.Name = "Wizyta";
             this.Text = "Wizyta";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LekarzB_FormClosed);
+            this.Load += new System.EventHandler(this.Wizyta_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

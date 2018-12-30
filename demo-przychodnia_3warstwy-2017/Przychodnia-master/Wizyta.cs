@@ -55,8 +55,9 @@ namespace Przychodnia
             // newBadaniaFizykalne.ShowDialog();
         }
 
-      
+        private void Wizyta_Load(object sender, EventArgs e)
+        {
 
-       
+        }
     }
 }
