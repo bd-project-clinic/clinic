@@ -2,23 +2,23 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataClassesClinic">
   <DataContextMoniker Name="/DataClassesClinicDataContext" />
   <nestedChildShapes>
-    <classShape Id="8a567918-852f-4bd8-92c4-160ae2c90cc5" absoluteBounds="4.5, 1.25, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/DataClassesClinicDataContext/Visit" />
-      <nestedChildShapes>
-        <elementListCompartment Id="24124834-dc1e-41eb-b631-890a3e22c487" absoluteBounds="4.515, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="5da65792-4cd4-4869-bce6-3acff9b2b4a5" absoluteBounds="1.625, 1.25, 2, 1.5785953776041666">
+    <classShape Id="3ae9e5a0-7493-462c-a7ac-85c7560166e5" absoluteBounds="1.875, 2, 2, 1.5785953776041666">
       <DataClassMoniker Name="/DataClassesClinicDataContext/Patient" />
       <nestedChildShapes>
-        <elementListCompartment Id="e9ef4d62-1360-412a-bb57-135c8046e7e1" absoluteBounds="1.6400000000000001, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="082f8754-0699-4097-8e90-20aaa407b378" absoluteBounds="1.8900000000000001, 2.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.625 : 2.03929768880208); (4.5 : 2.03929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <classShape Id="184541e1-b88d-4d83-a8aa-db8acf8bbf87" absoluteBounds="5.5, 1.875, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DataClassesClinicDataContext/Visit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="35ef4ec3-20b6-40ef-a06a-bc0de7ae817e" absoluteBounds="5.515, 2.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.875 : 2.78929768880208); (5.5 : 2.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataClassesClinicDataContext/Patient/Patient_Visit" />
       <nodes>
-        <classShapeMoniker Id="5da65792-4cd4-4869-bce6-3acff9b2b4a5" />
-        <classShapeMoniker Id="8a567918-852f-4bd8-92c4-160ae2c90cc5" />
+        <classShapeMoniker Id="3ae9e5a0-7493-462c-a7ac-85c7560166e5" />
+        <classShapeMoniker Id="184541e1-b88d-4d83-a8aa-db8acf8bbf87" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

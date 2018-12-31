@@ -26,8 +26,8 @@ namespace DataLayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-PGOUTHBM\\SQLEXPRESS;Initial Catalog=Przych_mock_01;Integrated " +
-            "Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-PGOUTHBM\\SQLEXPRESS;Initial Catalog=Clinic;Integrated Security" +
+            "=True")]
         public string Przych_mock_01ConnectionString {
             get {
                 return ((string)(this["Przych_mock_01ConnectionString"]));
