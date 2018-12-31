@@ -98,21 +98,21 @@ namespace Przychodnia
 
             
             patientSearchCriteria = new Patient();
-            patientSearchCriteria.IdPatient = (int) ( dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value); 
+            patientSearchCriteria.Id_Pat = (int) ( dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value); 
 
 
 
-            if  (patientSearchCriteria.IdPatient == 0)
+            if  (patientSearchCriteria.Id_Pat == 0)
             {
                 MessageBox.Show("Wybierz pacjenta");
                 return;
             }
             else
             {
-                MessageBox.Show(String.Format("Wybrano pacjenta o identyfikatorze {0}", patientSearchCriteria.IdPatient));
+                MessageBox.Show(String.Format("Wybrano pacjenta o identyfikatorze {0}", patientSearchCriteria.Id_Pat));
 
             }
-            EdycjaPacjenta frmEdycjaPacjenta = new EdycjaPacjenta(patientSearchCriteria.IdPatient);
+            EdycjaPacjenta frmEdycjaPacjenta = new EdycjaPacjenta(patientSearchCriteria.Id_Pat);
             DialogResult res =  frmEdycjaPacjenta.ShowDialog(this);
             // button1_Click(null, null); :) :)
             if (res == DialogResult.OK)

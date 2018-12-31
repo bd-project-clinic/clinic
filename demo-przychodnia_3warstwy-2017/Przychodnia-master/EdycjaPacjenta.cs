@@ -33,7 +33,7 @@ namespace Przychodnia
         {
 
            Patient searchCrit  = new Patient () ;
-           searchCrit.IdPatient = patientId ;
+           searchCrit.Id_Pat = patientId ;
            IQueryable<Patient> patList = RegistrationFacade.GetPatients(searchCrit);
            Patient patientDTO = patList.SingleOrDefault();
            textBox4.Text = patientDTO.FirstName;
@@ -60,7 +60,7 @@ namespace Przychodnia
         {
             validatePatient();
             Patient patientDTO = new Patient();
-            patientDTO.IdPatient = patientId;
+            patientDTO.Id_Pat = patientId;
             patientDTO.FirstName = textBox4.Text;
             patientDTO.LastName = textBox1.Text;
             RegistrationFacade.UpdatePatientData(patientDTO);

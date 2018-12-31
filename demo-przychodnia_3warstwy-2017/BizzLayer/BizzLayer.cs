@@ -20,7 +20,7 @@ namespace BizzLayer
                       where
                       (String.IsNullOrEmpty(searchCrit.LastName) || el.LastName.StartsWith(searchCrit.LastName))
                       &&
-                      ((searchCrit.IdPatient == 0) || el.IdPatient == searchCrit.IdPatient)
+                      ((searchCrit.Id_Pat == 0) || el.Id_Pat == searchCrit.Id_Pat)
                       &&
                       (String.IsNullOrEmpty(searchCrit.FirstName) || el.FirstName.StartsWith(searchCrit.FirstName))
                       &&
@@ -37,7 +37,7 @@ namespace BizzLayer
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
                 var res = (from el in dc.Patients
-                           where el.IdPatient == pat.IdPatient
+                           where el.Id_Pat == pat.Id_Pat
                            select el).SingleOrDefault();
                 if (res == null)
                     return;
@@ -60,7 +60,7 @@ namespace BizzLayer
                       select
                        new
                        {
-                           vis.IdVisit,
+                           vis.Id_Vis,
                            FirstName = vis.Patient.FirstName,
                            LastName = vis.Patient.LastName,
                            vis.Description,
