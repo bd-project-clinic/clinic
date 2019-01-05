@@ -75,6 +75,7 @@ namespace BizzLayer
                        {
                            //FirstName = vis.Patient.FirstName,
                            //LastName = vis.Patient.LastName,
+                           doc.Id_Doc,
                            doc.Name,
                            doc.Surname,
                        };

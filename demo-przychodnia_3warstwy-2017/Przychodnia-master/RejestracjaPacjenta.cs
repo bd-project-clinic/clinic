@@ -17,11 +17,12 @@ namespace Przychodnia
         public RejestracjaPacjenta()
         {
             InitializeComponent();
+            dataGridView1.DataSource = RegistrationFacade.GetDoctors(null);
         }
 
         private void RejestracjaPacjenta_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = RegistrationFacade.GetDoctors(null);
+           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -41,7 +42,7 @@ namespace Przychodnia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = RegistrationFacade.GetDoctors(null);
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -61,7 +62,8 @@ namespace Przychodnia
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }
