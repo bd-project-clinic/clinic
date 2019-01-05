@@ -36,6 +36,9 @@ namespace DataLayer
     partial void InsertVisit(Visit instance);
     partial void UpdateVisit(Visit instance);
     partial void DeleteVisit(Visit instance);
+    partial void InsertDoctor(Doctor instance);
+    partial void UpdateDoctor(Doctor instance);
+    partial void DeleteDoctor(Doctor instance);
     #endregion
 		
 		public DataClassesClinicDataContext() : 
@@ -81,6 +84,14 @@ namespace DataLayer
 			get
 			{
 				return this.GetTable<Visit>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Doctor> Doctors
+		{
+			get
+			{
+				return this.GetTable<Doctor>();
 			}
 		}
 	}
@@ -273,6 +284,8 @@ namespace DataLayer
 		
 		private EntityRef<Patient> _Patient;
 		
+		private EntityRef<Doctor> _Doctor;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -300,6 +313,7 @@ namespace DataLayer
 		public Visit()
 		{
 			this._Patient = default(EntityRef<Patient>);
+			this._Doctor = default(EntityRef<Doctor>);
 			OnCreated();
 		}
 		
@@ -438,6 +452,10 @@ namespace DataLayer
 			{
 				if ((this._Id_Doc != value))
 				{
+					if (this._Doctor.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnId_DocChanging(value);
 					this.SendPropertyChanging();
 					this._Id_Doc = value;
@@ -521,6 +539,40 @@ namespace DataLayer
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Visit", Storage="_Doctor", ThisKey="Id_Doc", OtherKey="Id_Doc", IsForeignKey=true)]
+		public Doctor Doctor
+		{
+			get
+			{
+				return this._Doctor.Entity;
+			}
+			set
+			{
+				Doctor previousValue = this._Doctor.Entity;
+				if (((previousValue != value) 
+							|| (this._Doctor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Doctor.Entity = null;
+						previousValue.Visits.Remove(this);
+					}
+					this._Doctor.Entity = value;
+					if ((value != null))
+					{
+						value.Visits.Add(this);
+						this._Id_Doc = value.Id_Doc;
+					}
+					else
+					{
+						this._Id_Doc = default(int);
+					}
+					this.SendPropertyChanged("Doctor");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -539,6 +591,168 @@ namespace DataLayer
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Doctor")]
+	public partial class Doctor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_Doc;
+		
+		private string _Name;
+		
+		private string _Surname;
+		
+		private string _NPWZ;
+		
+		private EntitySet<Visit> _Visits;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_DocChanging(int value);
+    partial void OnId_DocChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnSurnameChanging(string value);
+    partial void OnSurnameChanged();
+    partial void OnNPWZChanging(string value);
+    partial void OnNPWZChanged();
+    #endregion
+		
+		public Doctor()
+		{
+			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Doc", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_Doc
+		{
+			get
+			{
+				return this._Id_Doc;
+			}
+			set
+			{
+				if ((this._Id_Doc != value))
+				{
+					this.OnId_DocChanging(value);
+					this.SendPropertyChanging();
+					this._Id_Doc = value;
+					this.SendPropertyChanged("Id_Doc");
+					this.OnId_DocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Surname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string Surname
+		{
+			get
+			{
+				return this._Surname;
+			}
+			set
+			{
+				if ((this._Surname != value))
+				{
+					this.OnSurnameChanging(value);
+					this.SendPropertyChanging();
+					this._Surname = value;
+					this.SendPropertyChanged("Surname");
+					this.OnSurnameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NPWZ", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string NPWZ
+		{
+			get
+			{
+				return this._NPWZ;
+			}
+			set
+			{
+				if ((this._NPWZ != value))
+				{
+					this.OnNPWZChanging(value);
+					this.SendPropertyChanging();
+					this._NPWZ = value;
+					this.SendPropertyChanged("NPWZ");
+					this.OnNPWZChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Visit", Storage="_Visits", ThisKey="Id_Doc", OtherKey="Id_Doc")]
+		public EntitySet<Visit> Visits
+		{
+			get
+			{
+				return this._Visits;
+			}
+			set
+			{
+				this._Visits.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = this;
+		}
+		
+		private void detach_Visits(Visit entity)
+		{
+			this.SendPropertyChanging();
+			entity.Doctor = null;
 		}
 	}
 }

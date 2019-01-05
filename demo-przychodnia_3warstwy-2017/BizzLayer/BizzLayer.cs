@@ -66,6 +66,21 @@ namespace BizzLayer
 
         }
 
+        public static IQueryable GetDoctors(Doctor searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from doc in dc.Doctors
+                      select
+                       new
+                       {
+                           //FirstName = vis.Patient.FirstName,
+                           //LastName = vis.Patient.LastName,
+                           doc.Name,
+                           doc.Surname,
+                       };
+            return res;
+        }
+
     }
 
     static public class DoctorFacade

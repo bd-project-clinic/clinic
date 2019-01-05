@@ -82,7 +82,10 @@ namespace Przychodnia
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta();
+            DialogResult res = frmRejestracjaPacjenta.ShowDialog(this);
+
+            dataGridViewVisits.DataSource = DoctorFacade.GetVisits(null);
         }
 
         private void Rejestratorka_Load(object sender, EventArgs e)
