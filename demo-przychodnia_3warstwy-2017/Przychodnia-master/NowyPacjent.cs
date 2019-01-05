@@ -12,37 +12,35 @@ using BizzLayer;
 
 namespace Przychodnia
 {
-    public partial class RejestracjaPacjenta : Form
+    public partial class NowyPacjent : Form
     {
-        public RejestracjaPacjenta()
+        public NowyPacjent()
         {
             InitializeComponent();
-            dataGridView1.DataSource = RegistrationFacade.GetDoctors(null);
         }
 
-        private void RejestracjaPacjenta_Load(object sender, EventArgs e)
-        {
-           
-        }
+        private int patientId;
+        
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
+        private void NowyPacjent_Load(object sender, EventArgs e)
         {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Patient patientDTO = new Patient();
+            //patientDTO.Id_Pat = patientId;
+            patientDTO.FirstName = textBox1.Text;
+            patientDTO.LastName = textBox2.Text;
+            patientDTO.PESEL = textBox3.Text;
+
+            RegistrationFacade.NewPatientData(patientDTO);
+
+            DialogResult = DialogResult.OK;
+            this.Close();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

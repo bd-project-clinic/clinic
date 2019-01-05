@@ -62,7 +62,11 @@ namespace Przychodnia
 
         private void button4_Click(object sender, EventArgs e)
         {
+            NowyPacjent frmNowyPacjent = new NowyPacjent();
+            DialogResult res = frmNowyPacjent.ShowDialog(this);
 
+            if (res == DialogResult.OK)
+                viewPatients();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -78,7 +82,10 @@ namespace Przychodnia
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta();
+            DialogResult res = frmRejestracjaPacjenta.ShowDialog(this);
+
+            dataGridViewVisits.DataSource = DoctorFacade.GetVisits(null);
         }
 
         private void Rejestratorka_Load(object sender, EventArgs e)

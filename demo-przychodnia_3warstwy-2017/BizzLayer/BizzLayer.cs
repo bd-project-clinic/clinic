@@ -43,10 +43,43 @@ namespace BizzLayer
                     return;
                 res.LastName = pat.LastName;
                 res.FirstName = pat.FirstName;
+                res.PESEL = pat.PESEL;
                 dc.SubmitChanges();
 
             }
 
+        }
+        public static void NewPatientData(Patient pat)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new Patient();
+            
+                res.LastName = pat.LastName;
+                res.FirstName = pat.FirstName;
+                res.PESEL = pat.PESEL;
+
+                dc.Patients.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static IQueryable GetDoctors(Doctor searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from doc in dc.Doctors
+                      select
+                       new
+                       {
+                           //FirstName = vis.Patient.FirstName,
+                           //LastName = vis.Patient.LastName,
+                           doc.Id_Doc,
+                           doc.Name,
+                           doc.Surname,
+                       };
+            return res;
         }
 
     }
