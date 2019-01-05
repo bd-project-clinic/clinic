@@ -43,6 +43,23 @@ namespace BizzLayer
                     return;
                 res.LastName = pat.LastName;
                 res.FirstName = pat.FirstName;
+                res.PESEL = pat.PESEL;
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void NewPatientData(Patient pat)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new Patient();
+            
+                res.LastName = pat.LastName;
+                res.FirstName = pat.FirstName;
+                res.PESEL = pat.PESEL;
+
+                dc.Patients.InsertOnSubmit(res);
                 dc.SubmitChanges();
 
             }

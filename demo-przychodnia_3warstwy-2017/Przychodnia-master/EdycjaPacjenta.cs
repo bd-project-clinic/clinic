@@ -38,6 +38,7 @@ namespace Przychodnia
            Patient patientDTO = patList.SingleOrDefault();
            textBox4.Text = patientDTO.FirstName;
            textBox1.Text = patientDTO.LastName;
+            textBox2.Text = patientDTO.PESEL;
         }
 
         private void validatePatient()
@@ -63,6 +64,7 @@ namespace Przychodnia
             patientDTO.Id_Pat = patientId;
             patientDTO.FirstName = textBox4.Text;
             patientDTO.LastName = textBox1.Text;
+            patientDTO.PESEL = textBox2.Text;
             RegistrationFacade.UpdatePatientData(patientDTO);
             // viewPatient();
             //(Form)this.Parent.
@@ -79,6 +81,16 @@ namespace Przychodnia
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

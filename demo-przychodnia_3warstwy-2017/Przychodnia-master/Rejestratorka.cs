@@ -62,7 +62,11 @@ namespace Przychodnia
 
         private void button4_Click(object sender, EventArgs e)
         {
+            NowyPacjent frmNowyPacjent = new NowyPacjent();
+            DialogResult res = frmNowyPacjent.ShowDialog(this);
 
+            if (res == DialogResult.OK)
+                viewPatients();
         }
 
         private void button5_Click(object sender, EventArgs e)
