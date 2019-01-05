@@ -21,6 +21,16 @@
       <Column Name="Id_Reg" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="DT_Complete" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Patient_Visit" Member="Patient" ThisKey="Id_Pat" OtherKey="Id_Pat" Type="Patient" IsForeignKey="true" />
+      <Association Name="Doctor_Visit" Member="Doctor" ThisKey="Id_Doc" OtherKey="Id_Doc" Type="Doctor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Doctor" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="Id_Doc" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NPWZ" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Association Name="Doctor_Visit" Member="Visits" ThisKey="Id_Doc" OtherKey="Id_Doc" Type="Visit" />
     </Type>
   </Table>
 </Database>
