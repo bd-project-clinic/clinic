@@ -19,7 +19,7 @@ namespace Przychodnia
             InitializeComponent();
         }
 
-        private int patientId;
+        
         
 
 
@@ -31,7 +31,6 @@ namespace Przychodnia
         private void button1_Click(object sender, EventArgs e)
         {
             Patient patientDTO = new Patient();
-            //patientDTO.Id_Pat = patientId;
             patientDTO.FirstName = textBox1.Text;
             patientDTO.LastName = textBox2.Text;
             patientDTO.PESEL = textBox3.Text;

@@ -39,6 +39,9 @@ namespace DataLayer
     partial void InsertDoctor(Doctor instance);
     partial void UpdateDoctor(Doctor instance);
     partial void DeleteDoctor(Doctor instance);
+    partial void InsertUser(User instance);
+    partial void UpdateUser(User instance);
+    partial void DeleteUser(User instance);
     #endregion
 		
 		public DataClassesClinicDataContext() : 
@@ -92,6 +95,14 @@ namespace DataLayer
 			get
 			{
 				return this.GetTable<Doctor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<User> Users
+		{
+			get
+			{
+				return this.GetTable<User>();
 			}
 		}
 	}
@@ -276,9 +287,9 @@ namespace DataLayer
 		
 		private int _Id_Pat;
 		
-		private int _Id_Doc;
+		private System.Nullable<int> _Id_Doc;
 		
-		private int _Id_Reg;
+		private System.Nullable<int> _Id_Reg;
 		
 		private System.Nullable<System.DateTime> _DT_Complete;
 		
@@ -302,9 +313,9 @@ namespace DataLayer
     partial void OnDescriptionChanged();
     partial void OnId_PatChanging(int value);
     partial void OnId_PatChanged();
-    partial void OnId_DocChanging(int value);
+    partial void OnId_DocChanging(System.Nullable<int> value);
     partial void OnId_DocChanged();
-    partial void OnId_RegChanging(int value);
+    partial void OnId_RegChanging(System.Nullable<int> value);
     partial void OnId_RegChanged();
     partial void OnDT_CompleteChanging(System.Nullable<System.DateTime> value);
     partial void OnDT_CompleteChanged();
@@ -441,8 +452,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Doc", DbType="Int NOT NULL")]
-		public int Id_Doc
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Doc", DbType="Int")]
+		public System.Nullable<int> Id_Doc
 		{
 			get
 			{
@@ -465,8 +476,8 @@ namespace DataLayer
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Reg", DbType="Int NOT NULL")]
-		public int Id_Reg
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_Reg", DbType="Int")]
+		public System.Nullable<int> Id_Reg
 		{
 			get
 			{
@@ -566,7 +577,7 @@ namespace DataLayer
 					}
 					else
 					{
-						this._Id_Doc = default(int);
+						this._Id_Doc = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Doctor");
 				}
@@ -608,7 +619,11 @@ namespace DataLayer
 		
 		private string _NPWZ;
 		
+		private string _uname;
+		
 		private EntitySet<Visit> _Visits;
+		
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -622,11 +637,14 @@ namespace DataLayer
     partial void OnSurnameChanged();
     partial void OnNPWZChanging(string value);
     partial void OnNPWZChanged();
+    partial void OnunameChanging(string value);
+    partial void OnunameChanged();
     #endregion
 		
 		public Doctor()
 		{
 			this._Visits = new EntitySet<Visit>(new Action<Visit>(this.attach_Visits), new Action<Visit>(this.detach_Visits));
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -710,6 +728,30 @@ namespace DataLayer
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uname", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string uname
+		{
+			get
+			{
+				return this._uname;
+			}
+			set
+			{
+				if ((this._uname != value))
+				{
+					if (this._User.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnunameChanging(value);
+					this.SendPropertyChanging();
+					this._uname = value;
+					this.SendPropertyChanged("uname");
+					this.OnunameChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Doctor_Visit", Storage="_Visits", ThisKey="Id_Doc", OtherKey="Id_Doc")]
 		public EntitySet<Visit> Visits
 		{
@@ -720,6 +762,40 @@ namespace DataLayer
 			set
 			{
 				this._Visits.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Doctor", Storage="_User", ThisKey="uname", OtherKey="uname", IsForeignKey=true)]
+		public User User
+		{
+			get
+			{
+				return this._User.Entity;
+			}
+			set
+			{
+				User previousValue = this._User.Entity;
+				if (((previousValue != value) 
+							|| (this._User.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User.Entity = null;
+						previousValue.Doctors.Remove(this);
+					}
+					this._User.Entity = value;
+					if ((value != null))
+					{
+						value.Doctors.Add(this);
+						this._uname = value.uname;
+					}
+					else
+					{
+						this._uname = default(string);
+					}
+					this.SendPropertyChanged("User");
+				}
 			}
 		}
 		
@@ -753,6 +829,168 @@ namespace DataLayer
 		{
 			this.SendPropertyChanging();
 			entity.Doctor = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
+	public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _uname;
+		
+		private string _pass;
+		
+		private System.Nullable<System.DateTime> _DT_retire;
+		
+		private string _role;
+		
+		private EntitySet<Doctor> _Doctors;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnunameChanging(string value);
+    partial void OnunameChanged();
+    partial void OnpassChanging(string value);
+    partial void OnpassChanged();
+    partial void OnDT_retireChanging(System.Nullable<System.DateTime> value);
+    partial void OnDT_retireChanged();
+    partial void OnroleChanging(string value);
+    partial void OnroleChanged();
+    #endregion
+		
+		public User()
+		{
+			this._Doctors = new EntitySet<Doctor>(new Action<Doctor>(this.attach_Doctors), new Action<Doctor>(this.detach_Doctors));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uname", DbType="VarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string uname
+		{
+			get
+			{
+				return this._uname;
+			}
+			set
+			{
+				if ((this._uname != value))
+				{
+					this.OnunameChanging(value);
+					this.SendPropertyChanging();
+					this._uname = value;
+					this.SendPropertyChanged("uname");
+					this.OnunameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pass", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string pass
+		{
+			get
+			{
+				return this._pass;
+			}
+			set
+			{
+				if ((this._pass != value))
+				{
+					this.OnpassChanging(value);
+					this.SendPropertyChanging();
+					this._pass = value;
+					this.SendPropertyChanged("pass");
+					this.OnpassChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DT_retire", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DT_retire
+		{
+			get
+			{
+				return this._DT_retire;
+			}
+			set
+			{
+				if ((this._DT_retire != value))
+				{
+					this.OnDT_retireChanging(value);
+					this.SendPropertyChanging();
+					this._DT_retire = value;
+					this.SendPropertyChanged("DT_retire");
+					this.OnDT_retireChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_role", DbType="NChar(10) NOT NULL", CanBeNull=false)]
+		public string role
+		{
+			get
+			{
+				return this._role;
+			}
+			set
+			{
+				if ((this._role != value))
+				{
+					this.OnroleChanging(value);
+					this.SendPropertyChanging();
+					this._role = value;
+					this.SendPropertyChanged("role");
+					this.OnroleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Doctor", Storage="_Doctors", ThisKey="uname", OtherKey="uname")]
+		public EntitySet<Doctor> Doctors
+		{
+			get
+			{
+				return this._Doctors;
+			}
+			set
+			{
+				this._Doctors.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Doctors(Doctor entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = this;
+		}
+		
+		private void detach_Doctors(Doctor entity)
+		{
+			this.SendPropertyChanging();
+			entity.User = null;
 		}
 	}
 }

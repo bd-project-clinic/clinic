@@ -20,7 +20,7 @@ namespace Przychodnia
         }
 
         private int patientId;
-        private Patient searchCrit;
+        //private Patient searchCrit;
         //private Patient PatientDTO;
 
         public EdycjaPacjenta(int Id):this ()
