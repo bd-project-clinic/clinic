@@ -97,7 +97,9 @@ namespace BizzLayer
                            FirstName = vis.Patient.FirstName,
                            LastName = vis.Patient.LastName,
                            vis.Description,
-                           vis.Diagnosis
+                           vis.Diagnosis,
+                           vis.DT_Reg,
+                           vis.Doctor.Surname
                        };
             return res;
         }
