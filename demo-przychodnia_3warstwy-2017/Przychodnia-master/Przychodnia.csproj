@@ -55,6 +55,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DodajLaboranta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajLaboranta.Designer.cs">
+      <DependentUpon>DodajLaboranta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dodajlekarza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dodajlekarza.Designer.cs">
+      <DependentUpon>Dodajlekarza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DodajRejestr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajRejestr.Designer.cs">
+      <DependentUpon>DodajRejestr.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodajUsera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +111,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DodajLaboranta.resx">
+      <DependentUpon>DodajLaboranta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dodajlekarza.resx">
+      <DependentUpon>Dodajlekarza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DodajRejestr.resx">
+      <DependentUpon>DodajRejestr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DodajUsera.resx">
+      <DependentUpon>DodajUsera.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EdycjaPacjenta.resx">
       <DependentUpon>EdycjaPacjenta.cs</DependentUpon>
     </EmbeddedResource>
