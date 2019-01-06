@@ -109,4 +109,71 @@ namespace BizzLayer
         }
     }
 
+    static public class AdminFacade
+    {
+        public static void NewDoctorData(Doctor doc)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+                var res = new Doctor();
+                res.Name = doc.Name;
+                res.Surname = doc.Surname;
+                res.uname = doc.uname;
+                res.NPWZ = doc.NPWZ;
+                dc.Doctors.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void NewLabData(Lab lb)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+                var res = new Lab();
+                res.Name = lb.Name;
+                res.Surname = lb.Surname;
+                res.uname = lb.uname;
+                dc.Lab.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void NewRegData(Register rg)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+                var res = new Register();
+                res.Name = rg.Name;
+                res.Surname = rg.Surname;
+                res.uname = rg.uname;
+                dc.Register.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void NewUserData(User usr)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new User();
+                res.uname = usr.uname;
+                res.pass = usr.pass;
+                res.role = usr.role;
+                res.DT_retire = usr.DT_retire;
+                dc.Users.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+    }
 }
