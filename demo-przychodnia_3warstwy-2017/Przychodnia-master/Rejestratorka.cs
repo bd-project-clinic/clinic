@@ -21,6 +21,7 @@ namespace Przychodnia
         public Rejestratorka()
         {
             InitializeComponent();
+            dataGridViewVisits.DataSource = RegistrationFacade.GetVisits(null);
         }
 
         private void viewPatients ()
@@ -140,6 +141,17 @@ namespace Przychodnia
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            dataGridViewVisits.DataSource = RegistrationFacade.GetVisitsData(DateTime.Today);
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridViewVisits.Columns.Clear();
+            dataGridViewVisits.DataSource = RegistrationFacade.GetVisitsData(dateTimePicker1.Value);
         }
     }
 }

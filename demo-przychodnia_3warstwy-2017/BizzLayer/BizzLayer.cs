@@ -94,6 +94,7 @@ namespace BizzLayer
                            vis.Description,
                            vis.Diagnosis,
                            vis.DT_Reg,
+                           vis.Status,
                            vis.Doctor.Surname
                        };
             return res;
@@ -102,6 +103,53 @@ namespace BizzLayer
         {
             return;
         }
+
+        public static IQueryable GetVisitsData(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            DateTime test = DateTime.Today;
+            if (data == DateTime.Today)
+            {
+                var res = from vis in dc.Visits
+                          where (vis.DT_Reg == test)
+                          select
+                          new
+                          {
+                              vis.Id_Vis,
+                              FirstName = vis.Patient.FirstName,
+                              LastName = vis.Patient.LastName,
+                              vis.Description,
+                              vis.Diagnosis,
+                              vis.DT_Reg,
+                              vis.Status,
+                              vis.Doctor.Surname
+                          };
+                return res;
+
+            }
+            else
+            {
+                var res = from vis in dc.Visits
+                          where (vis.DT_Reg == data)
+                          select
+                          new
+                          {
+                              vis.Id_Vis,
+                              FirstName = vis.Patient.FirstName,
+                              LastName = vis.Patient.LastName,
+                              vis.Description,
+                              vis.Diagnosis,
+                              vis.DT_Reg,
+                              vis.Status,
+                              vis.Doctor.Surname
+
+                          };
+                return res;
+            }
+
+
+        }
+
 
     }
     //============================================================================================================================
