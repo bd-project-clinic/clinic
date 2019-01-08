@@ -85,7 +85,7 @@ namespace Przychodnia
             RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta();
             DialogResult res = frmRejestracjaPacjenta.ShowDialog(this);
 
-            dataGridViewVisits.DataSource = DoctorFacade.GetVisits(null);
+            dataGridViewVisits.DataSource = RegistrationFacade.GetVisits(null);
         }
 
         private void Rejestratorka_Load(object sender, EventArgs e)
@@ -134,7 +134,7 @@ namespace Przychodnia
 
         private void btnShowVisists_Click(object sender, EventArgs e)
         {
-            dataGridViewVisits.DataSource = DoctorFacade.GetVisits(null);
+            dataGridViewVisits.DataSource = RegistrationFacade.GetVisits(null);
    
         }
 

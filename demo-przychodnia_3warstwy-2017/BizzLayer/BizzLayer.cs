@@ -81,11 +81,6 @@ namespace BizzLayer
                        };
             return res;
         }
-
-    }
-    //============================================================================================================================
-    static public class DoctorFacade
-    {
         public static IQueryable GetVisits(Visit searchCrit)
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
@@ -107,6 +102,12 @@ namespace BizzLayer
         {
             return;
         }
+
+    }
+    //============================================================================================================================
+    static public class DoctorFacade
+    {
+        
 
 
         public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
