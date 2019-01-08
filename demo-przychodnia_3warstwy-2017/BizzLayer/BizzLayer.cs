@@ -83,7 +83,7 @@ namespace BizzLayer
         }
 
     }
-
+    //============================================================================================================================
     static public class DoctorFacade
     {
         public static IQueryable GetVisits(Visit searchCrit)
@@ -105,6 +105,85 @@ namespace BizzLayer
         {
             return;
         }
+
+
+        public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            if (data == DateTime.Today)
+            {
+                var res = from vis in dc.Visits
+                          where (vis.DT_Reg == DateTime.Today)
+                          select
+                          new
+                          {
+                               vis.Id_Vis,
+                               FirstName=vis.Patient.FirstName,
+                               LastName = vis.Patient.LastName,
+                               vis.Description,
+                               vis.Diagnosis,
+                               vis.Status,
+                               vis.DT_Reg,
+                           };
+                return res;
+
+            }
+            else
+            {
+                var res = from vis in dc.Visits
+                          where (vis.DT_Reg == data)
+                          select
+                          new
+                          {
+                              vis.Id_Vis,
+                              FirstName = vis.Patient.FirstName,
+                              LastName = vis.Patient.LastName,
+                              vis.Description,
+                              vis.Diagnosis,
+                              vis.Status,
+                              vis.DT_Reg,
+
+                          };
+                return res;
+            }
+
+               
+        }
+        public static void UpdateVisitDesc(Visit vis)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == vis.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.Description = vis.Description;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static void UpdateVisitDiag(Visit vis)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == vis.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.Diagnosis = vis.Diagnosis;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+
+
+
     }
 
 }

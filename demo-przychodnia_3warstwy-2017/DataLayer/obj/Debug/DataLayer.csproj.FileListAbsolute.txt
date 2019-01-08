@@ -15,3 +15,10 @@ C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\
 C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
 C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.dll
 C:\Users\wojte\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.dll.config
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.dll
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\bin\Debug\DataLayer.pdb
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.csprojAssemblyReference.cache
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.dll
+C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\DataLayer\obj\Debug\DataLayer.pdb

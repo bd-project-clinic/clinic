@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Clinic" Class="DataClassesClinicDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-PGOUTHBM\SQLEXPRESS;Initial Catalog=Clinic;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="Przych_mock_01ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-I3F3L90\SQLEXPRESS;Initial Catalog=Clinic;Integrated Security=True" SettingsObjectName="DataLayer.Properties.Settings" SettingsPropertyName="Przych_mock_01ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Doctor" Member="Doctors">
+    <Type Name="Doctor">
+      <Column Name="Id_Doc" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NPWZ" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="uname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Doctor_Visit" Member="Visits" ThisKey="Id_Doc" OtherKey="Id_Doc" Type="Visit" />
+    </Type>
+  </Table>
   <Table Name="dbo.Patient" Member="Patients">
     <Type Name="Patient">
       <Column Name="Id_Pat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -20,28 +30,77 @@
       <Column Name="Id_Doc" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Id_Reg" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DT_Complete" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Patient_Visit" Member="Patient" ThisKey="Id_Pat" OtherKey="Id_Pat" Type="Patient" IsForeignKey="true" />
+      <Association Name="Visit_Exam_Lab" Member="Exam_Labs" ThisKey="Id_Vis" OtherKey="Id_Vis" Type="Exam_Lab" />
+      <Association Name="Visit_Exam_Physical" Member="Exam_Physicals" ThisKey="Id_Vis" OtherKey="Id_Vis" Type="Exam_Physical" />
       <Association Name="Doctor_Visit" Member="Doctor" ThisKey="Id_Doc" OtherKey="Id_Doc" Type="Doctor" IsForeignKey="true" />
+      <Association Name="Patient_Visit" Member="Patient" ThisKey="Id_Pat" OtherKey="Id_Pat" Type="Patient" IsForeignKey="true" />
+      <Association Name="Register_Visit" Member="Register" ThisKey="Id_Reg" OtherKey="Id_Reg" Type="Register" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Doctor" Member="Doctors">
-    <Type Name="Doctor">
-      <Column Name="Id_Doc" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+  <Table Name="dbo.Lab" Member="Labs">
+    <Type Name="Lab">
+      <Column Name="Id_Lab" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="NPWZ" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="uname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="Doctor_Visit" Member="Visits" ThisKey="Id_Doc" OtherKey="Id_Doc" Type="Visit" />
-      <Association Name="User_Doctor" Member="User" ThisKey="uname" OtherKey="uname" Type="User" IsForeignKey="true" />
+      <Association Name="Lab_Exam_Lab" Member="Exam_Labs" ThisKey="Id_Lab" OtherKey="Id_Lab" Type="Exam_Lab" />
     </Type>
   </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="uname" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="pass" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DT_retire" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="role" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
-      <Association Name="User_Doctor" Member="Doctors" ThisKey="uname" OtherKey="uname" Type="Doctor" />
+  <Table Name="dbo.Exam_Lab" Member="Exam_Labs">
+    <Type Name="Exam_Lab">
+      <Column Name="Id_Exam_lab" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="doctor_comments" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="dt_zle" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="results" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="dt_wyk" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="supervisor_comments" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="dt_zat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Vis" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Lab" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Id_SLab" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Lab_Exam_Lab" Member="Lab" ThisKey="Id_Lab" OtherKey="Id_Lab" Type="Lab" IsForeignKey="true" />
+      <Association Name="Visit_Exam_Lab" Member="Visit" ThisKey="Id_Vis" OtherKey="Id_Vis" Type="Visit" IsForeignKey="true" />
+      <Association Name="SL_Exam_Exam_Lab" Member="SL_Exam" ThisKey="Code" OtherKey="Code" Type="SL_Exam" IsForeignKey="true" />
+      <Association Name="SLab_Exam_Lab" Member="SLab" ThisKey="Id_SLab" OtherKey="Id_SLab" Type="SLab" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Exam_Physical" Member="Exam_Physicals">
+    <Type Name="Exam_Physical">
+      <Column Name="Id_exam_ph" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Result" Type="System.String" DbType="VarChar(1000)" CanBeNull="true" />
+      <Column Name="Code" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Vis" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Visit_Exam_Physical" Member="Visit" ThisKey="Id_Vis" OtherKey="Id_Vis" Type="Visit" IsForeignKey="true" />
+      <Association Name="SL_Exam_Exam_Physical" Member="SL_Exam" ThisKey="Code" OtherKey="Code" Type="SL_Exam" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Register" Member="Registers">
+    <Type Name="Register">
+      <Column Name="Id_Reg" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="uname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Register_Visit" Member="Visits" ThisKey="Id_Reg" OtherKey="Id_Reg" Type="Visit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SL_Exam" Member="SL_Exams">
+    <Type Name="SL_Exam">
+      <Column Name="Code" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="SL_Exam_Exam_Lab" Member="Exam_Labs" ThisKey="Code" OtherKey="Code" Type="Exam_Lab" />
+      <Association Name="SL_Exam_Exam_Physical" Member="Exam_Physicals" ThisKey="Code" OtherKey="Code" Type="Exam_Physical" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SLab" Member="SLabs">
+    <Type Name="SLab">
+      <Column Name="Id_SLab" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Surname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="uname" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="SLab_Exam_Lab" Member="Exam_Labs" ThisKey="Id_SLab" OtherKey="Id_SLab" Type="Exam_Lab" />
     </Type>
   </Table>
 </Database>
