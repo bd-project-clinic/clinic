@@ -20,6 +20,7 @@ namespace Przychodnia
             InitializeComponent();
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
+            //dataGridView1.DataSource = RegistrationFacade.GetVisits(null);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -42,8 +43,8 @@ namespace Przychodnia
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
 
-            dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = DoctorFacade.GetVisits(dateTimePicker1.Value);
+           dataGridView1.Columns.Clear();
+           dataGridView1.DataSource = DoctorFacade.GetVisits(dateTimePicker1.Value);
 
 
         }
