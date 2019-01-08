@@ -113,10 +113,11 @@ namespace BizzLayer
         public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            DateTime test = DateTime.Today;
             if (data == DateTime.Today)
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg == DateTime.Today)
+                          where (vis.DT_Reg == test)
                           select
                           new
                           {
@@ -126,7 +127,7 @@ namespace BizzLayer
                                vis.Description,
                                vis.Diagnosis,
                                vis.Status,
-                               vis.DT_Reg,
+                               vis.DT_Reg
                            };
                 return res;
 
@@ -144,7 +145,7 @@ namespace BizzLayer
                               vis.Description,
                               vis.Diagnosis,
                               vis.Status,
-                              vis.DT_Reg,
+                              vis.DT_Reg
 
                           };
                 return res;
