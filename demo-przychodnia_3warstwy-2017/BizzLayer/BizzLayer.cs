@@ -24,7 +24,7 @@ namespace BizzLayer
                       &&
                       (String.IsNullOrEmpty(searchCrit.FirstName) || el.FirstName.StartsWith(searchCrit.FirstName))
                       &&
-                      (String.IsNullOrEmpty(searchCrit.PESEL) || el.PESEL.StartsWith(searchCrit.PESEL))
+                       (String.IsNullOrEmpty(searchCrit.PESEL) || el.PESEL.StartsWith(searchCrit.PESEL))
                       select el;
             return res;
         }
@@ -81,11 +81,6 @@ namespace BizzLayer
                        };
             return res;
         }
-
-    }
-
-    static public class DoctorFacade
-    {
         public static IQueryable GetVisits(Visit searchCrit)
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
@@ -97,7 +92,9 @@ namespace BizzLayer
                            FirstName = vis.Patient.FirstName,
                            LastName = vis.Patient.LastName,
                            vis.Description,
-                           vis.Diagnosis
+                           vis.Diagnosis,
+                           vis.DT_Reg,
+                           vis.Doctor.Surname
                        };
             return res;
         }
@@ -105,6 +102,179 @@ namespace BizzLayer
         {
             return;
         }
+
+    }
+    //============================================================================================================================
+    static public class DoctorFacade
+    {
+        
+
+
+        public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            DateTime test = DateTime.Today;
+            if (data == DateTime.Today)
+            {
+                var res = from vis in dc.Visits
+                          where (vis.DT_Reg == test)
+                          select
+                          new
+                          {
+                               vis.Id_Vis,
+                               FirstName=vis.Patient.FirstName,
+                               LastName = vis.Patient.LastName,
+                               vis.Description,
+                               vis.Diagnosis,
+                               vis.Status,
+                               vis.DT_Reg
+                           };
+                return res;
+
+            }
+            else
+            {
+                var res = from vis in dc.Visits
+                          where (vis.DT_Reg == data)
+                          select
+                          new
+                          {
+                              vis.Id_Vis,
+                              FirstName = vis.Patient.FirstName,
+                              LastName = vis.Patient.LastName,
+                              vis.Description,
+                              vis.Diagnosis,
+                              vis.Status,
+                              vis.DT_Reg
+
+                          };
+                return res;
+            }
+
+               
+        }
+        public static void UpdateVisitDesc(Visit vis)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == vis.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.Description = vis.Description;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static void UpdateVisitDiag(Visit vis)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == vis.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.Diagnosis = vis.Diagnosis;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+
+
+
+
     }
 
+    static public class AdminFacade
+    {
+        public static string CreateMD5(string input) // funkcja md5
+        {
+            // input string do kalkulacji MD5
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                //  Konwersja tablicy bitów na hex string 
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
+            public static void NewDoctorData(Doctor doc)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+                var res = new Doctor();
+                res.Name = doc.Name;
+                res.Surname = doc.Surname;
+                res.uname = doc.uname; 
+                res.NPWZ = doc.NPWZ;
+                dc.Doctors.InsertOnSubmit(res);
+                dc.SubmitChanges();
+               
+            }
+
+        }
+        public static void NewLabData(Lab lb)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+                var res = new Lab();
+                res.Name = lb.Name;
+                res.Surname = lb.Surname;
+                res.uname = lb.uname;
+                dc.Lab.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void NewRegData(Register rg)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+                var res = new Register();
+                res.Name = rg.Name;
+                res.Surname = rg.Surname;
+                res.uname = rg.uname;
+                dc.Register.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void NewUserData(User usr)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new User();
+                res.uname = usr.uname;
+                res.pass = CreateMD5(usr.pass); // hasowanie hasla
+                res.role = usr.role;
+                res.DT_retire = usr.DT_retire;
+                dc.Users.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        
+        
+    }
 }

@@ -202,17 +202,17 @@
             // 
             this.dataGridViewVisits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewVisits.Location = new System.Drawing.Point(22, 352);
-            this.dataGridViewVisits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewVisits.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewVisits.Name = "dataGridViewVisits";
             this.dataGridViewVisits.RowTemplate.Height = 24;
-            this.dataGridViewVisits.Size = new System.Drawing.Size(727, 122);
+            this.dataGridViewVisits.Size = new System.Drawing.Size(547, 196);
             this.dataGridViewVisits.TabIndex = 12;
             this.dataGridViewVisits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // btnShowVisists
             // 
-            this.btnShowVisists.Location = new System.Drawing.Point(265, 327);
-            this.btnShowVisists.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowVisists.Location = new System.Drawing.Point(242, 329);
+            this.btnShowVisists.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowVisists.Name = "btnShowVisists";
             this.btnShowVisists.Size = new System.Drawing.Size(116, 19);
             this.btnShowVisists.TabIndex = 13;
