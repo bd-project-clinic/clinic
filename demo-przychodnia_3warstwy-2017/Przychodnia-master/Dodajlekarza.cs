@@ -64,12 +64,14 @@ namespace Przychodnia
             doc.Name = textBox1.Text;
             doc.Surname = textBox2.Text;
             doc.NPWZ = textBox5.Text;
+
             AdminFacade.NewDoctorData(doc);
+            
         }
 
         private void label7_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
