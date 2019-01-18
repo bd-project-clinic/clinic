@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\demo-przychodnia_3warstwy-2017"
+    "\\demo-przychodnia_3warstwy-2017",
+    "\\demo-przychodnia_3warstwy-2017\\BizzLayer",
+    "\\demo-przychodnia_3warstwy-2017\\Przychodnia-master"
   ],
+  "SelectedNode": "\\demo-przychodnia_3warstwy-2017\\Przychodnia-master\\Lekarz.Designer.cs",
   "PreviewInSolutionExplorer": false
 }
