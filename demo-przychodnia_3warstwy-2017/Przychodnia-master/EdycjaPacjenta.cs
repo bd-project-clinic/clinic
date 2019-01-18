@@ -38,7 +38,7 @@ namespace Przychodnia
            Patient patientDTO = patList.SingleOrDefault();
            textBox4.Text = patientDTO.FirstName;
            textBox1.Text = patientDTO.LastName;
-            textBox2.Text = patientDTO.PESEL;
+           textBox2.Text = patientDTO.PESEL;
         }
 
         private void validatePatient()

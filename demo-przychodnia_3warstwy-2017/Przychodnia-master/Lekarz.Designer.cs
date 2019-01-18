@@ -121,6 +121,7 @@
             this.label3.Size = new System.Drawing.Size(26, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Imię";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 

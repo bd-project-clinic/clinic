@@ -65,6 +65,40 @@ namespace BizzLayer
             }
 
         }
+        public static void NewVisitData(Visit pat)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new Visit();
+
+                res.Status = pat.Status;
+                res.DT_Reg = pat.DT_Reg;
+                res.Id_Pat = pat.Id_Pat;
+                res.Id_Doc = pat.Id_Doc;
+
+                dc.Visits.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static void DeleteVisitData(int pat)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == pat
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                dc.Visits.DeleteOnSubmit(res);
+                dc.SubmitChanges();   
+
+            }
+
+        }
+
 
         public static IQueryable GetDoctors(Doctor searchCrit)
         {
@@ -73,8 +107,6 @@ namespace BizzLayer
                       select
                        new
                        {
-                           //FirstName = vis.Patient.FirstName,
-                           //LastName = vis.Patient.LastName,
                            doc.Id_Doc,
                            doc.Name,
                            doc.Surname,
@@ -104,10 +136,10 @@ namespace BizzLayer
             return;
         }
 
-        public static IQueryable GetVisitsData(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
+        public static IQueryable GetVisitsData(DateTime data)      
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
-            DateTime test = DateTime.Today;
+            var test = DateTime.Today;
             if (data == DateTime.Today)
             {
                 var res = from vis in dc.Visits
