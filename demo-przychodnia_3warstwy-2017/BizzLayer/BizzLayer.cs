@@ -54,7 +54,7 @@ namespace BizzLayer
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
                 var res = new Patient();
-            
+
                 res.LastName = pat.LastName;
                 res.FirstName = pat.FirstName;
                 res.PESEL = pat.PESEL;
@@ -86,7 +86,7 @@ namespace BizzLayer
     //============================================================================================================================
     static public class DoctorFacade
     {
-        public static IQueryable GetVisits(Visit searchCrit)
+        public static IQueryable GetVisits(Visit searchCrit)  //dodac sort by?
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             var res = from vis in dc.Visits
@@ -98,9 +98,10 @@ namespace BizzLayer
                            LastName = vis.Patient.LastName,
                            vis.Description,
                            vis.Diagnosis,
+                           vis.Status,
                            vis.DT_Reg,
-                           vis.Doctor.Surname
                        };
+           
             return res;
         }
         public static void UpdateVisitData(Visit vis)
@@ -119,14 +120,14 @@ namespace BizzLayer
                           select
                           new
                           {
-                               vis.Id_Vis,
-                               FirstName=vis.Patient.FirstName,
-                               LastName = vis.Patient.LastName,
-                               vis.Description,
-                               vis.Diagnosis,
-                               vis.Status,
-                               vis.DT_Reg,
-                           };
+                              vis.Id_Vis,
+                              FirstName = vis.Patient.FirstName,
+                              LastName = vis.Patient.LastName,
+                              vis.Description,
+                              vis.Diagnosis,
+                              vis.Status,
+                              vis.DT_Reg,
+                          };
                 return res;
 
             }
@@ -149,7 +150,7 @@ namespace BizzLayer
                 return res;
             }
 
-               
+
         }
         public static void UpdateVisitDesc(Visit vis)
         {
@@ -176,6 +177,7 @@ namespace BizzLayer
                            select el).SingleOrDefault();
                 if (res == null)
                     return;
+
                 res.Diagnosis = vis.Diagnosis;
                 dc.SubmitChanges();
 
@@ -184,75 +186,136 @@ namespace BizzLayer
         }
 
 
+        public static void UpdateVisitStatus(Visit vis)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == vis.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.Status = vis.Status;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
 
 
     }
-
-    static public class AdminFacade
+    //======================================================================================================================
+  /*  static public class BadaniaFacade
     {
-        public static void NewDoctorData(Doctor doc)
+
+    }*/
+    //=========================================================================================================================
+    static public class SlownikFacade
+    {
+        public static IQueryable GetSlownik()
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
-
-
-                var res = new Doctor();
-                res.Name = doc.Name;
-                res.Surname = doc.Surname;
-                res.uname = doc.uname;
-                res.NPWZ = doc.NPWZ;
-                dc.Doctors.InsertOnSubmit(res);
-                dc.SubmitChanges();
-
+                var res = from ex in dc.SL_Exams
+                          select
+                          new
+                          {
+                              Kod=ex.Code,
+                              Typ= ex.type,
+                              Nazwa=ex.name,
+                          };
+                return res;
             }
-
         }
-        public static void NewLabData(Lab lb)
+
+
+
+        public static void NewBadanie(SL_Exam exam)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
-
-
-                var res = new Lab();
-                res.Name = lb.Name;
-                res.Surname = lb.Surname;
-                res.uname = lb.uname;
-                dc.Lab.InsertOnSubmit(res);
+                var res = new SL_Exam();
+                res.Code = exam.Code;
+                res.type = exam.type;
+                res.name = exam.name;
+                dc.SL_Exams.InsertOnSubmit(res);
                 dc.SubmitChanges();
-
             }
 
-        }
-        public static void NewRegData(Register rg)
-        {
-            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
-            {
-
-
-                var res = new Register();
-                res.Name = rg.Name;
-                res.Surname = rg.Surname;
-                res.uname = rg.uname;
-                dc.Register.InsertOnSubmit(res);
-                dc.SubmitChanges();
-
-            }
 
         }
-        public static void NewUserData(User usr)
-        {
-            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
-            {
-                var res = new User();
-                res.uname = usr.uname;
-                res.pass = usr.pass;
-                res.role = usr.role;
-                res.DT_retire = usr.DT_retire;
-                dc.Users.InsertOnSubmit(res);
-                dc.SubmitChanges();
 
-            }
-
-        }
+        
     }
+//==========================================================================================================================
+        static public class AdminFacade
+        {
+            public static void NewDoctorData(Doctor doc)
+            {
+                using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+                {
+
+
+                    var res = new Doctor();
+                    res.Name = doc.Name;
+                    res.Surname = doc.Surname;
+                    res.uname = doc.uname;
+                    res.NPWZ = doc.NPWZ;
+                    dc.Doctors.InsertOnSubmit(res);
+                    dc.SubmitChanges();
+
+                }
+
+            }
+            public static void NewLabData(Lab lb)
+            {
+                using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+                {
+
+
+                    var res = new Lab();
+                    res.Name = lb.Name;
+                    res.Surname = lb.Surname;
+                    res.uname = lb.uname;
+                    dc.Lab.InsertOnSubmit(res);
+                    dc.SubmitChanges();
+
+                }
+
+            }
+            public static void NewRegData(Register rg)
+            {
+                using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+                {
+
+
+                    var res = new Register();
+                    res.Name = rg.Name;
+                    res.Surname = rg.Surname;
+                    res.uname = rg.uname;
+                    dc.Register.InsertOnSubmit(res);
+                    dc.SubmitChanges();
+
+                }
+
+            }
+            public static void NewUserData(User usr)
+            {
+                using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+                {
+                    var res = new User();
+                    res.uname = usr.uname;
+                    res.pass = usr.pass;
+                    res.role = usr.role;
+                    res.DT_retire = usr.DT_retire;
+                    dc.Users.InsertOnSubmit(res);
+                    dc.SubmitChanges();
+
+                }
+
+            }
+        }
 }
+
+

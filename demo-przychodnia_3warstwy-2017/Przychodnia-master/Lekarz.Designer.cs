@@ -46,6 +46,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +67,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 8, 19, 45, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 17, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // button1
@@ -157,15 +160,17 @@
             this.button2.TabIndex = 17;
             this.button2.Text = "Wykaz badań fizykalnych";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(170, 183);
+            this.button3.Location = new System.Drawing.Point(162, 183);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(119, 42);
+            this.button3.Size = new System.Drawing.Size(124, 42);
             this.button3.TabIndex = 18;
             this.button3.Text = "Zleć badanie laboratoryjne";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -209,11 +214,44 @@
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 23;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(406, 25);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(128, 42);
+            this.button5.TabIndex = 24;
+            this.button5.Text = "Zakończ wizytę";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(406, 290);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(134, 62);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "Zamknij okno";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click_1);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(406, 215);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(134, 69);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "Pokaż wszystkie wizyty";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Lekarz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 604);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -259,5 +297,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
     }
 }

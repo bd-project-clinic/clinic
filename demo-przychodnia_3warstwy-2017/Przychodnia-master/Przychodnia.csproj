@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DodajBadFiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajBadFiz.Designer.cs">
+      <DependentUpon>DodajBadFiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodajLaboranta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,12 @@
     <Compile Include="EdycjaPacjenta.Designer.cs">
       <DependentUpon>EdycjaPacjenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="BadaniaFizykalne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BadaniaFizykalne.Designer.cs">
+      <DependentUpon>BadaniaFizykalne.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lekarz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +121,12 @@
     <Compile Include="Rejestratorka.Designer.cs">
       <DependentUpon>Rejestratorka.cs</DependentUpon>
     </Compile>
+    <Compile Include="SlownikBadanFizykalnych.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SlownikBadanFizykalnych.Designer.cs">
+      <DependentUpon>SlownikBadanFizykalnych.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wizyta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +135,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZlecBadanieLab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZlecBadanieLab.Designer.cs">
+      <DependentUpon>ZlecBadanieLab.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="BadaniaFizykalne.resx">
+      <DependentUpon>BadaniaFizykalne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DodajBadFiz.resx">
+      <DependentUpon>DodajBadFiz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DodajLaboranta.resx">
       <DependentUpon>DodajLaboranta.cs</DependentUpon>
     </EmbeddedResource>
@@ -144,6 +174,9 @@
     <EmbeddedResource Include="Rejestratorka.resx">
       <DependentUpon>Rejestratorka.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SlownikBadanFizykalnych.resx">
+      <DependentUpon>SlownikBadanFizykalnych.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Wizyta.resx">
       <DependentUpon>Wizyta.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +189,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ZlecBadanieLab.resx">
+      <DependentUpon>ZlecBadanieLab.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

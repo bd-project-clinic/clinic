@@ -123,5 +123,49 @@ namespace Przychodnia
             opis = textBox2.Text;
 
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Visit vis = new Visit();
+            vis.Id_Vis = id_wizyty;
+            vis.Status = "Zakonczona";
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            DoctorFacade.UpdateVisitStatus(vis);
+            if (selectedRowCount == 1)
+            {
+                if (vis.Status == "Zakonczona")
+                    MessageBox.Show("Wizyta zakonczona");
+            }
+            else MessageBox.Show("Nie zaznaczyłeś wizyty");
+               
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            BadaniaFizykalne newBadaniaFizykalne = new BadaniaFizykalne();
+            newBadaniaFizykalne.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ZlecBadanieLab newBadanieLab = new ZlecBadanieLab();
+            newBadanieLab.ShowDialog();
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Visit allvisits = new Visit();
+            dataGridView1.DataSource = DoctorFacade.GetVisits(allvisits);
+        }
     }
 }
