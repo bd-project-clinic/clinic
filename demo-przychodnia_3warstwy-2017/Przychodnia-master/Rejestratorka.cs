@@ -72,6 +72,25 @@ namespace Przychodnia
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (dataGridViewVisits.Rows.Count == 0)
+            {
+                MessageBox.Show("Brak Wizyt");
+                return;
+            }
+
+            int VisDeleteId = (int)(dataGridViewVisits.Rows[dataGridViewVisits.CurrentCell.RowIndex].Cells[0].Value);
+
+            DialogResult DeleteConfirm = MessageBox.Show("Czy na pewno chcesz usunąć wybraną wizyte ?", "UWAGA", MessageBoxButtons.YesNo);
+            if(DeleteConfirm == DialogResult.Yes)
+            {
+                RegistrationFacade.DeleteVisitData(VisDeleteId);
+                dataGridViewVisits.DataSource = RegistrationFacade.GetVisits(null);
+            }          
+            else if (DeleteConfirm == DialogResult.No)
+            {
+                return;
+            }
+            
 
         }
 
@@ -83,10 +102,33 @@ namespace Przychodnia
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta();
-            DialogResult res = frmRejestracjaPacjenta.ShowDialog(this);
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("Brak pacjentów");
+                return;
+            }
 
-            dataGridViewVisits.DataSource = RegistrationFacade.GetVisits(null);
+
+            patientSearchCriteria = new Patient();
+            patientSearchCriteria.Id_Pat = (int)(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value);
+
+
+
+            if (patientSearchCriteria.Id_Pat == 0)
+            {
+                MessageBox.Show("Wybierz pacjenta");
+                return;
+            }
+            else
+            {
+                MessageBox.Show(String.Format("Wybrano pacjenta o identyfikatorze {0}", patientSearchCriteria.Id_Pat));
+
+            }
+            RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta(patientSearchCriteria.Id_Pat);
+            DialogResult res = frmRejestracjaPacjenta.ShowDialog(this);
+            
+            if (res == DialogResult.OK)
+                viewPatients();
         }
 
         private void Rejestratorka_Load(object sender, EventArgs e)

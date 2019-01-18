@@ -49,7 +49,6 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewVisits = new System.Windows.Forms.DataGridView();
             this.btnShowVisists = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -223,15 +222,6 @@
             this.btnShowVisists.UseVisualStyleBackColor = true;
             this.btnShowVisists.Click += new System.EventHandler(this.btnShowVisists_Click);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(0, 0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
-            this.button6.TabIndex = 14;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(150, 325);
@@ -257,7 +247,6 @@
             this.ClientSize = new System.Drawing.Size(808, 559);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.btnShowVisists);
             this.Controls.Add(this.dataGridViewVisits);
             this.Controls.Add(this.button5);
@@ -305,7 +294,6 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.DataGridView dataGridViewVisits;
         private System.Windows.Forms.Button btnShowVisists;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
