@@ -143,7 +143,7 @@ namespace BizzLayer
             if (data == DateTime.Today)
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg == test)
+                          where (vis.DT_Reg.Date == test)
                           select
                           new
                           {
@@ -162,7 +162,7 @@ namespace BizzLayer
             else
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg == data)
+                          where (vis.DT_Reg.Date == data)
                           select
                           new
                           {
@@ -197,7 +197,7 @@ namespace BizzLayer
             if (data == DateTime.Today)
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg == test)
+                          where (vis.DT_Reg.Date == test)
                           select
                           new
                           {
@@ -215,7 +215,7 @@ namespace BizzLayer
             else
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg == data)
+                          where (vis.DT_Reg.Date == data)
                           select
                           new
                           {

@@ -44,7 +44,7 @@ namespace Przychodnia
         {
 
            dataGridView1.Columns.Clear();
-           dataGridView1.DataSource = DoctorFacade.GetVisits(dateTimePicker1.Value);
+           dataGridView1.DataSource = DoctorFacade.GetVisits(dateTimePicker1.Value.Date);
 
 
         }
