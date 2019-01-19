@@ -305,7 +305,23 @@ namespace BizzLayer
             }
 
         }
-        public static void NewRegData(Register rg)
+        public static void NewSLabData(SLab lb)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+               
+                var res = new SLab();
+                res.Name = lb.Name;
+                res.Surname = lb.Surname;
+                res.uname = lb.uname;
+                dc.SLabs.InsertOnSubmit(res);
+                dc.SubmitChanges();
+               
+            }
+
+        }
+            public static void NewRegData(Register rg)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {

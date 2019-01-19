@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DodajKierownika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DodajKierownika.Designer.cs">
+      <DependentUpon>DodajKierownika.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodajLaboranta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DodajKierownika.resx">
+      <DependentUpon>DodajKierownika.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DodajLaboranta.resx">
       <DependentUpon>DodajLaboranta.cs</DependentUpon>
     </EmbeddedResource>

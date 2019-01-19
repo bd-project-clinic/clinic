@@ -78,13 +78,14 @@
             // 
             // button4
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button4.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button4.Location = new System.Drawing.Point(213, 297);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(336, 63);
             this.button4.TabIndex = 7;
             this.button4.Text = "Dodaj kierownika laboratorium";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // DodajUsera
             // 
