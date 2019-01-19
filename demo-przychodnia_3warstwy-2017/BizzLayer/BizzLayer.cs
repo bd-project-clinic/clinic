@@ -162,7 +162,7 @@ namespace BizzLayer
             else
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg == data)
+                          where (vis.DT_Reg.Date == data)
                           select
                           new
                           {

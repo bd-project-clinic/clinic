@@ -17,7 +17,7 @@ namespace Przychodnia
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Lekarz());
-            //Application.Run(new DodajUsera());
+            Application.Run(new DodajUsera());
             Application.Run(new Rejestratorka());
             // Application.Run(new Laboratorium());
         }

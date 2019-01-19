@@ -193,7 +193,7 @@ namespace Przychodnia
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
             dataGridViewVisits.Columns.Clear();
-            dataGridViewVisits.DataSource = RegistrationFacade.GetVisitsData(dateTimePicker1.Value);
+            dataGridViewVisits.DataSource = RegistrationFacade.GetVisitsData(dateTimePicker1.Value.Date);
         }
     }
 }
