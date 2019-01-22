@@ -21,6 +21,18 @@ namespace Przychodnia
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
         }
+        public Lekarz(int _id)
+        {
+            InitializeComponent();
+            dataGridView1.Columns.Clear();
+            dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount == 1)
+            {
+                _id = (int)dataGridView1.SelectedRows[0].Cells[0].Value;
+
+            }
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -153,8 +165,9 @@ namespace Przychodnia
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ZlecBadanieLab newBadanieLab = new ZlecBadanieLab();
+            ZlecBadanieLab newBadanieLab = new ZlecBadanieLab(id_wizyty);
             newBadanieLab.ShowDialog();
+
         }
 
         private void button6_Click_1(object sender, EventArgs e)

@@ -246,7 +246,28 @@ namespace BizzLayer
 
         }
 
-        
+        public static void GiveExamStatus(Exam_Lab exam)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Exam_Labs
+                           where el.Id_Vis == exam.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.dt_zle = exam.dt_zle;
+                res.status = exam.status;
+                res.doctor_comments = exam.doctor_comments;
+                res.Code = exam.Code;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+
+
+
     }
 //==========================================================================================================================
         static public class AdminFacade
