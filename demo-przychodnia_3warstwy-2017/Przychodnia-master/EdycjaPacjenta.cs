@@ -64,7 +64,15 @@ namespace Przychodnia
             patientDTO.Id_Pat = patientId;
             patientDTO.FirstName = textBox4.Text;
             patientDTO.LastName = textBox1.Text;
-            patientDTO.PESEL = textBox2.Text;
+            if (textBox2.Text.Length == 11)
+            {
+                patientDTO.PESEL = textBox2.Text;
+            }
+            else
+            {
+                MessageBox.Show("Zła długość PESEL");
+                return;
+            }
             RegistrationFacade.UpdatePatientData(patientDTO);
             // viewPatient();
             //(Form)this.Parent.
