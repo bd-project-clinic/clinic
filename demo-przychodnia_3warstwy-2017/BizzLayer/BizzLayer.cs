@@ -336,5 +336,17 @@ namespace BizzLayer
             }
 
         }
+       public static string GetUsers(User check_usr) // funkcja sprawdzająca uzytkownika w bazie. 
+        {
+            var db = new DataClassesClinicDataContext();
+            User check = null;
+            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == check_usr.pass); // sprawdzamy czy check_usr znajduje się w bazie. 
+            if (check!=null){
+                return check.role; // jeśli nie jest null, to zwracamy stringa z rolą. 
+            }
+            return null;
+        }
+        
+       
     }
 }

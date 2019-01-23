@@ -139,5 +139,10 @@ namespace Przychodnia
         {
 
         }
+
+        private void Lekarz_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

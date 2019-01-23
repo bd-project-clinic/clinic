@@ -62,5 +62,10 @@ namespace Przychodnia
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

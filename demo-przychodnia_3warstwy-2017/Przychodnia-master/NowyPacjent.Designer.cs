@@ -108,6 +108,7 @@
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "PESEL";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // NowyPacjent
             // 

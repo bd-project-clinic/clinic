@@ -237,6 +237,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "Lekarz";
             this.Text = "Panel główny Lekarza";
+            this.Load += new System.EventHandler(this.Lekarz_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
