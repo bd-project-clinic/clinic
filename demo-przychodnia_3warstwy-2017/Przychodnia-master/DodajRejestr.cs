@@ -39,5 +39,10 @@ namespace Przychodnia
             reg.Surname = textBox2.Text;
             AdminFacade.NewRegData(reg);
         }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodajKierownika.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +97,12 @@
     <Compile Include="EdycjaPacjenta.Designer.cs">
       <DependentUpon>EdycjaPacjenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="EdycjaUsera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdycjaUsera.Designer.cs">
+      <DependentUpon>EdycjaUsera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lekarz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +135,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DodajKierownika.resx">
       <DependentUpon>DodajKierownika.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EdycjaPacjenta.resx">
       <DependentUpon>EdycjaPacjenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EdycjaUsera.resx">
+      <DependentUpon>EdycjaUsera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lekarz.resx">
       <DependentUpon>Lekarz.cs</DependentUpon>
