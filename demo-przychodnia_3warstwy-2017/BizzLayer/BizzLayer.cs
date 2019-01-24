@@ -265,6 +265,22 @@ namespace BizzLayer
 
         }
 
+        public static void NewExamLab(Exam_Lab exam)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new Exam_Lab();
+                res.Id_Vis = exam.Id_Vis;
+                res.dt_zle = exam.dt_zle;
+                res.status = exam.status;
+                res.doctor_comments = exam.doctor_comments;
+                res.Code = exam.Code;
+                dc.SubmitChanges();
+
+            }
+
+        }
+
 
 
 

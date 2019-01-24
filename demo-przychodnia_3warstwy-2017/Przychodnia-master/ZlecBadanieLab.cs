@@ -77,7 +77,7 @@ namespace Przychodnia
                 exam.status = 1;                        //zmienic, gdy status w Exam_Lab bedzie char
                 exam.dt_zle = DateTime.Today;
                 exam.Code = id_badania;
-                SlownikFacade.GiveExamStatus(exam);
+                SlownikFacade.NewExamLab(exam);
                 if (exam.status == 1)                   //to samo
                 {
                     MessageBox.Show("Zlecono badanie");
