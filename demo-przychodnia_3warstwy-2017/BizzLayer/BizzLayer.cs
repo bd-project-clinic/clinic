@@ -76,6 +76,8 @@ namespace BizzLayer
                 res.DT_Reg = pat.DT_Reg;
                 res.Id_Pat = pat.Id_Pat;
                 res.Id_Doc = pat.Id_Doc;
+                res.Description = " ";
+                res.Description = " ";
 
                 dc.Visits.InsertOnSubmit(res);
                 dc.SubmitChanges();
@@ -94,7 +96,14 @@ namespace BizzLayer
                 if (res == null)
                     return;
                 dc.Visits.DeleteOnSubmit(res);
-                dc.SubmitChanges();   
+                try
+                {
+                    dc.SubmitChanges();
+                }
+                catch
+                {
+                    return;
+                }  
 
             }
 
