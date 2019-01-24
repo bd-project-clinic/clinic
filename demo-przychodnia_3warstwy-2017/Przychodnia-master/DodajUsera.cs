@@ -41,5 +41,12 @@ namespace Przychodnia
             DodajRejestr frmDodajRejestr = new DodajRejestr();
             DialogResult res = frmDodajRejestr.ShowDialog(this);
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DodajKierownika frmDodajKierownika = new DodajKierownika();
+            DialogResult res = frmDodajKierownika.ShowDialog(this);
+
+        }
     }
 }

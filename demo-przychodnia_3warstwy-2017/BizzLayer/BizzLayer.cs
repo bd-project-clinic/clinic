@@ -25,6 +25,7 @@ namespace BizzLayer
                       (String.IsNullOrEmpty(searchCrit.FirstName) || el.FirstName.StartsWith(searchCrit.FirstName))
                       &&
                        (String.IsNullOrEmpty(searchCrit.PESEL) || el.PESEL.StartsWith(searchCrit.PESEL))
+                      
                       select el;
             return res;
         }
@@ -305,7 +306,23 @@ namespace BizzLayer
             }
 
         }
-        public static void NewRegData(Register rg)
+        public static void NewSLabData(SLab lb)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+               
+                var res = new SLab();
+                res.Name = lb.Name;
+                res.Surname = lb.Surname;
+                res.uname = lb.uname;
+                dc.SLabs.InsertOnSubmit(res);
+                dc.SubmitChanges();
+               
+            }
+
+        }
+            public static void NewRegData(Register rg)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
@@ -331,6 +348,52 @@ namespace BizzLayer
                 res.role = usr.role;
                 res.DT_retire = usr.DT_retire;
                 dc.Users.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static IQueryable<User> GetUsers(User searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from el in dc.Users
+                      where
+                      (String.IsNullOrEmpty(searchCrit.uname) || el.uname.StartsWith(searchCrit.uname))
+                      &&
+                      ((searchCrit.DT_retire == default(DateTime)) || el.DT_retire == searchCrit.DT_retire)
+                      &&
+                      (String.IsNullOrEmpty(searchCrit.role) || el.role.StartsWith(searchCrit.role))
+
+                      select el;
+            return res;
+        }
+        
+        public static void UpdateUserData(User usr)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Users
+                           where el.uname == usr.uname
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.DT_retire = usr.DT_retire;
+                
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void DeleteUserData(string uname)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Users
+                           where el.uname == uname
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                dc.Users.DeleteOnSubmit(res);
                 dc.SubmitChanges();
 
             }
