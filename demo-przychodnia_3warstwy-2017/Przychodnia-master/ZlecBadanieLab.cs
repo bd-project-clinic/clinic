@@ -71,9 +71,14 @@ namespace Przychodnia
                 komentarz = textBox1.Text;
                 int id_badania;
                 id_badania=(int) dataGridView1.SelectedRows[0].Cells[0].Value;
+                if (komentarz == "")
+                {
+                    komentarz = " ";
+                }
                 Exam_Lab exam = new Exam_Lab();
                 exam.Id_Vis = id_wizyty;
                 exam.doctor_comments = komentarz;
+                
                 exam.status = 1;                        //zmienic, gdy status w Exam_Lab bedzie char
                 exam.dt_zle = DateTime.Today;
                 exam.Code = id_badania;
@@ -85,6 +90,7 @@ namespace Przychodnia
             }
             else if (selectedRowCount == 0)
                 MessageBox.Show("Nie zaznaczyles badania!");
+                
         }
 
         private void label4_Click(object sender, EventArgs e)
