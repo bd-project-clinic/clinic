@@ -77,7 +77,7 @@ namespace BizzLayer
                 res.Id_Pat = pat.Id_Pat;
                 res.Id_Doc = pat.Id_Doc;
                 res.Description = " ";
-                res.Description = " ";
+                res.Diagnosis = " ";
 
                 dc.Visits.InsertOnSubmit(res);
                 dc.SubmitChanges();
@@ -197,7 +197,7 @@ namespace BizzLayer
     //============================================================================================================================
     static public class DoctorFacade
     {
-        
+
 
 
         public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
@@ -211,14 +211,14 @@ namespace BizzLayer
                           select
                           new
                           {
-                               vis.Id_Vis,
-                               FirstName=vis.Patient.FirstName,
-                               LastName = vis.Patient.LastName,
-                               vis.Description,
-                               vis.Diagnosis,
-                               vis.Status,
-                               vis.DT_Reg
-                           };
+                              vis.Id_Vis,
+                              FirstName = vis.Patient.FirstName,
+                              LastName = vis.Patient.LastName,
+                              vis.Description,
+                              vis.Diagnosis,
+                              vis.Status,
+                              vis.DT_Reg
+                          };
                 return res;
 
             }
@@ -241,7 +241,7 @@ namespace BizzLayer
                 return res;
             }
 
-               
+
         }
         public static void UpdateVisitDesc(Visit vis)
         {
@@ -275,10 +275,117 @@ namespace BizzLayer
 
         }
 
+        public static void UpdateVisitStat(Visit vis)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Visits
+                           where el.Id_Vis == vis.Id_Vis
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                vis.Status = "END";
+                res.Status = vis.Status;
+                dc.Visits.InsertOnSubmit(res);
+                dc.SubmitChanges();
 
+            }
+
+        }
 
 
     }
+ //=======================================================================================================================================
+    static public class ExamFacade
+        {
+            public static IQueryable GetSL_Exam()
+            {
+                DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+                var res = from ex in dc.SL_Exams
+                          select
+                           new
+                           {
+                               ex.Code,
+                               ex.type,
+                               ex.name,
+                           };
+                return res;
+            }
+        public static void NewExam_Lab(Exam_Lab exam)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = new Exam_Lab();
+
+                res.Id_Vis = exam.Id_Vis;
+                res.doctor_comments = exam.doctor_comments;
+                res.dt_zle = exam.dt_zle;
+                res.Code = exam.Code;
+                dc.Exam_Labs.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static IQueryable GetExam_Lab()
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.Exam_Labs
+                      select
+                       new
+                       {
+                           ex.Id_Exam_lab,
+                           ex.doctor_comments,
+                           ex.dt_zle,
+                           ex.Id_Vis,
+                           ex.Code,
+                       };
+            return res;
+        }
+
+        public static IQueryable GetSL_Exam(SL_Exam searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.SL_Exams
+                      where
+                      (ex.type==searchCrit.type || ex.name==searchCrit.name)
+                      select ex;
+            return res;
+        }
+
+        public static IQueryable GetSL_Exam_Code(SL_Exam searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.SL_Exams
+                      where
+                      (ex.Code == searchCrit.Code)
+                      select ex;
+            return res;
+        }
+
+        public static IQueryable GetExam_Lab(Exam_Lab exam)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.Exam_Labs
+                      where(ex.Id_Vis==exam.Id_Vis)
+                      select
+                       new
+                       {
+                           ex.Id_Exam_lab,
+                           ex.results,
+                           ex.dt_wyk,
+                           ex.supervisor_comments,
+                           ex.dt_zat,
+                           ex.status,
+                           ex.Code,
+                       };
+            return res;
+        }
+    }
+  //=======================================================================================================================================
+
+
+        
 
     static public class AdminFacade
     {

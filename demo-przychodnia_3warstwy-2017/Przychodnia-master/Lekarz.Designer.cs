@@ -46,6 +46,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +68,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 8, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 25, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // button1
@@ -212,11 +216,55 @@
             this.label10.Size = new System.Drawing.Size(0, 13);
             this.label10.TabIndex = 23;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(392, 39);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(134, 46);
+            this.button5.TabIndex = 24;
+            this.button5.Text = "Zakończ wizyte";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(392, 304);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(134, 39);
+            this.button6.TabIndex = 25;
+            this.button6.Text = "Odśwież wizyty";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(392, 234);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(134, 40);
+            this.button7.TabIndex = 26;
+            this.button7.Text = "Zamknij okno";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(170, 243);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(119, 45);
+            this.button8.TabIndex = 27;
+            this.button8.Text = "Wyświetl badania laboratoryjne pacjenta";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Lekarz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 604);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -262,5 +310,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }

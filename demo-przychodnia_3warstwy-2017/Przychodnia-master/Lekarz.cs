@@ -22,6 +22,7 @@ namespace Przychodnia
             dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
             //dataGridView1.DataSource = RegistrationFacade.GetVisits(null);
         }
+       
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -115,6 +116,7 @@ namespace Przychodnia
             vis.Description = textBox2.Text;
             DoctorFacade.UpdateVisitDesc(vis);
             DoctorFacade.UpdateVisitDiag(vis);
+            MessageBox.Show("Zmiany zostały zatwierdzone. Odśwież wizyty.");
 
         }
 
@@ -127,6 +129,13 @@ namespace Przychodnia
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount == 1)
+            {
+                ZlecBadanieLaboratoryjne newBadanie = new ZlecBadanieLaboratoryjne(dataGridView1);
+                newBadanie.ShowDialog();
+            }
+            else MessageBox.Show("Nie zaznaczyłeś wizyty"); 
 
         }
 
@@ -138,6 +147,56 @@ namespace Przychodnia
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount == 1)
+            {
+                Visit vis = new Visit();
+                vis.Id_Vis = id_wizyty;
+                vis.Status = "END";
+                DoctorFacade.UpdateVisitStat(vis);
+                MessageBox.Show("Wizyta zakonczona");
+            }
+            else MessageBox.Show("Nie zaznaczyłeś wizyty");
+           
+
+        }
+       
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+            dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
+            textBox1.Text = null;
+            textBox2.Text = null;
+            label7.Text = null;
+            label8.Text = null;
+            label9.Text = null;
+            label10.Text = null;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            if (selectedRowCount == 1)
+            {
+                WyswietlBadLabPacjenta newBadanie = new WyswietlBadLabPacjenta(dataGridView1);
+                newBadanie.ShowDialog();
+            }
+            else MessageBox.Show("Nie zaznaczyłeś wizyty");
         }
     }
 }
