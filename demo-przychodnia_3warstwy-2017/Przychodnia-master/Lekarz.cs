@@ -50,6 +50,7 @@ namespace Przychodnia
 
         }
         int id_wizyty;
+        string status_wizyty;
         private void button1_Click(object sender, EventArgs e)
         {
             string imie;
@@ -77,6 +78,7 @@ namespace Przychodnia
                 label9.Text = stan;
                 label10.Text = rejestracja;
                 id_wizyty = id;
+                status_wizyty = stan;
             }
 
             else if (selectedRowCount > 1)
@@ -154,11 +156,16 @@ namespace Przychodnia
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (selectedRowCount == 1)
             {
-                Visit vis = new Visit();
-                vis.Id_Vis = id_wizyty;
-                vis.Status = "END";
-                DoctorFacade.UpdateVisitStat(vis);
-                MessageBox.Show("Wizyta zakonczona");
+                if (status_wizyty=="ENDBAD")
+                {
+                    Visit vis = new Visit();
+                    vis.Id_Vis = id_wizyty;
+                    vis.Status = "ENDVIS";
+                    DoctorFacade.UpdateVisitStat(vis);
+                    MessageBox.Show("Wizyta zakonczona");
+                }
+                else MessageBox.Show("Nie możesz zakończyć wizyty, gdyż trwają badania.");
+
             }
             else MessageBox.Show("Nie zaznaczyłeś wizyty");
            
@@ -197,6 +204,13 @@ namespace Przychodnia
                 newBadanie.ShowDialog();
             }
             else MessageBox.Show("Nie zaznaczyłeś wizyty");
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+            Visit allvisits = new Visit();
+            dataGridView1.DataSource = DoctorFacade.GetVisits(allvisits);
         }
     }
 }

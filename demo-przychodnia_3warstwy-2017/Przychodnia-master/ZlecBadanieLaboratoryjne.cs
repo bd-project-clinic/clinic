@@ -69,6 +69,7 @@ namespace Przychodnia
                 exam.doctor_comments = komentarz_doc;
                 exam.dt_zle = Convert.ToDateTime(label2.Text);
                 exam.Code = kod;
+                exam.status = 1;
                 ExamFacade.NewExam_Lab(exam);
                 MessageBox.Show("Badanie zostało zlecone");
                 this.Close();

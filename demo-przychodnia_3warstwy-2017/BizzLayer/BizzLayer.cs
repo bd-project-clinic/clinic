@@ -197,7 +197,24 @@ namespace BizzLayer
     //============================================================================================================================
     static public class DoctorFacade
     {
+        public static IQueryable GetVisits(Visit searchCrit)  //dodac sort by?
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from vis in dc.Visits
+                      select
+                       new
+                       {
+                           vis.Id_Vis,
+                           FirstName = vis.Patient.FirstName,
+                           LastName = vis.Patient.LastName,
+                           vis.Description,
+                           vis.Diagnosis,
+                           vis.Status,
+                           vis.DT_Reg,
+                       };
 
+            return res;
+        }
 
 
         public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
@@ -284,7 +301,6 @@ namespace BizzLayer
                            select el).SingleOrDefault();
                 if (res == null)
                     return;
-                vis.Status = "END";
                 res.Status = vis.Status;
                 dc.Visits.InsertOnSubmit(res);
                 dc.SubmitChanges();
@@ -321,6 +337,7 @@ namespace BizzLayer
                 res.doctor_comments = exam.doctor_comments;
                 res.dt_zle = exam.dt_zle;
                 res.Code = exam.Code;
+                res.status = exam.status;
                 dc.Exam_Labs.InsertOnSubmit(res);
                 dc.SubmitChanges();
 
