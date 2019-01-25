@@ -272,6 +272,24 @@ namespace BizzLayer
 
     static public class AdminFacade
     {
+        public static string CreateMD5(string input) // funkcja md5
+        {
+            // input string do kalkulacji MD5
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                //  Konwersja tablicy bitów na hex string 
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
+        }
+
         public static void NewDoctorData(Doctor doc)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
@@ -326,8 +344,8 @@ namespace BizzLayer
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
                 var res = new User();
-                res.uname = usr.uname;
-                res.pass = usr.pass;
+                res.uname = usr.uname;             
+                res.pass = CreateMD5(usr.pass); // hasowanie hasla
                 res.role = usr.role;
                 res.DT_retire = usr.DT_retire;
                 dc.Users.InsertOnSubmit(res);
@@ -340,7 +358,7 @@ namespace BizzLayer
         {
             var db = new DataClassesClinicDataContext();
             User check = null;
-            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == check_usr.pass); // sprawdzamy czy check_usr znajduje się w bazie. 
+            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == CreateMD5(check_usr.pass)); // sprawdzamy czy check_usr znajduje się w bazie. 
             if (check!=null){
                 return check.role; // jeśli nie jest null, to zwracamy stringa z rolą. 
             }

@@ -33,41 +33,40 @@ namespace Przychodnia
         private void button1_Click(object sender, EventArgs e)
         {
             
-                string role; // zwracany przez funkcje string (DOC,LAB,REJ).
+                string role;
 
                 User user_check = new User();
                 user_check.uname = textBox1.Text;
                 user_check.pass = textBox2.Text;
 
             
-                role = AdminFacade.GetUsers(user_check); // sprawdzanie w bizzlayer czy istnieje takie hasło oraz użytkownik.
+                role = AdminFacade.GetUsers(user_check);
 
             
-                if (role == "DOC") // ZMIENCIE SOBIE W BAZIE ROLE NA NCHAR(3), INACZEJ NIE BĘDZIE DZIAŁAĆ.
+                if (role == "DOC")
                 {
-                    Dodajlekarza frmDodajlekarza = new Dodajlekarza();
-                    DialogResult res = frmDodajlekarza.ShowDialog(this);
-                    
-
+                    Lekarz frmLekarz = new Lekarz();
+                    DialogResult res = frmLekarz.ShowDialog(this);
+                                      
                 }
                 else if (role == "LAB")
                 {
-                    DodajLaboranta frmDodajlaboranta = new DodajLaboranta();
+                    DodajLaboranta frmDodajlaboranta = new DodajLaboranta(); // tutaj powinno być okno laboranta
                     DialogResult res = frmDodajlaboranta.ShowDialog(this);
                     
 
                 }
                 else if (role == "REJ")
                 {
-                    DodajRejestr frmDodajRejestr = new DodajRejestr();
+                    Rejestratorka frmDodajRejestr = new Rejestratorka();
                     DialogResult res = frmDodajRejestr.ShowDialog(this);
                     
 
                 }
-                else if (role == null) // jesli nie istnite podajemy komunikat.
+                else if (role == null)
                 {
                     MessageBox.Show("Nie znaleziono użytkownika w bazie, podaj poprawny login i hasło");
-                    InitializeComponent();
+                   
                 }
 
 
