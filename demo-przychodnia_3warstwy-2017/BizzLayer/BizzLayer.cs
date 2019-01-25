@@ -10,8 +10,83 @@ using DataLayer;
 namespace BizzLayer
 {
 
+    static public class LabFacade
+    {
+        public static IQueryable GetResearchData(DateTime data)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var test = DateTime.Today;
+            if (data == DateTime.Today)
+            {
+                var res = from research in dc.Exam_Labs
+                          where (research.dt_zle.Date == test) && (research.status == 1) //|| (research.status == 4)
+                          select
+                          new
+                          {
+                          
+                              research.Id_Exam_lab,
+                              research.Code,
+                              research.Id_Lab,
+                              research.Id_SLab,
+                              research.dt_zle,
+                              research.dt_wyk,
+                              research.dt_zat,
+                              research.Id_Vis,
+                              research.status
+                             
+                              
+                          };
+                return res;
 
-    static public class RegistrationFacade
+            }
+            else
+            {
+                var res = from research in dc.Exam_Labs
+                          where (research.dt_zle.Date == data) && (research.status == 1) //|| (research.status == 4)
+                          select
+                          new
+                          {
+                              research.Id_Exam_lab,
+                              research.Code,
+                              research.Id_Lab,
+                              research.Id_SLab,
+                              research.dt_zle,
+                              research.dt_wyk,
+                              research.dt_zat,
+                              research.Id_Vis,
+                              research.status
+
+                          };
+                return res;
+            }
+
+
+        }
+        public static IQueryable GetResearch(Visit searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from research in dc.Exam_Labs
+                      where (research.status == 1) //|| (research.status == 4)
+                      select
+                       new
+                       {
+                           research.Id_Exam_lab,
+                           research.Code,
+                           research.Id_Lab,
+                           research.Id_SLab,
+                           research.dt_zle,
+                           research.dt_wyk,
+                           research.dt_zat,
+                           research.Id_Vis,
+                           research.status
+                       };
+            return res;
+        }
+    }
+
+
+
+     static public class RegistrationFacade
     {
         public static IQueryable<Patient> GetPatients(Patient searchCrit)
         {
