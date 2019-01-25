@@ -79,6 +79,12 @@ namespace Przychodnia
             }
 
             int VisDeleteId = (int)(dataGridViewVisits.Rows[dataGridViewVisits.CurrentCell.RowIndex].Cells[0].Value);
+            string status = (string)(dataGridViewVisits.Rows[dataGridViewVisits.CurrentCell.RowIndex].Cells[6].Value);
+
+            if(status != "ENDVIS    ")
+            {
+                MessageBox.Show("UWAGA TA WIZYTA NIE JEST JESZCZE ZAKOŃCZONA");
+            }
 
             DialogResult DeleteConfirm = MessageBox.Show("Czy na pewno chcesz usunąć wybraną wizyte ?", "UWAGA", MessageBoxButtons.YesNo);
             if(DeleteConfirm == DialogResult.Yes)

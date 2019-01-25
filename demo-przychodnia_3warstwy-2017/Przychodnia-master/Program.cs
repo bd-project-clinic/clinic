@@ -21,7 +21,7 @@ namespace Przychodnia
             //  Application.Run(new DodajUsera());
             //   Application.Run(new Rejestratorka());
 
-           // Application.Run(new Admin());
+            Application.Run(new Admin());
         }
     }
 }
