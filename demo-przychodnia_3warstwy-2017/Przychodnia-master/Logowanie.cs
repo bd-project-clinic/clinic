@@ -17,6 +17,7 @@ namespace Przychodnia
         public Logowanie()
         {
             InitializeComponent();
+            textBox2.UseSystemPasswordChar = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -38,6 +39,7 @@ namespace Przychodnia
                 User user_check = new User();
                 user_check.uname = textBox1.Text;
                 user_check.pass = textBox2.Text;
+            
 
             
                 role = AdminFacade.GetUsers(user_check);
@@ -82,8 +84,8 @@ namespace Przychodnia
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
-        }
+            
+        }   
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
