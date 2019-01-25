@@ -40,15 +40,21 @@ namespace Przychodnia
         {
             string wynik;
             string komentarz;
+       
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
+            int status = (int)dataGridView1.SelectedRows[0].Cells[5].Value;
             if (selectedRowCount == 1)
             {
-                wynik = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                komentarz = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-                textBox1.Text = wynik;
-                textBox2.Text = komentarz;
-            }
+                if (status==3)
+                {
+                    wynik = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
+                    komentarz = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+                    textBox1.Text = wynik;
+                    textBox2.Text = komentarz;
+                }
+                else MessageBox.Show("Badanie jest w trakcie!");
 
+            }
             else if (selectedRowCount > 1)
                 MessageBox.Show("Zaznaczyles wiecej niz jedno badanie!");
             else if (selectedRowCount == 0)
