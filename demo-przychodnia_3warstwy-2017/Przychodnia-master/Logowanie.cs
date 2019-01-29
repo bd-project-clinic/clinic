@@ -53,8 +53,8 @@ namespace Przychodnia
                 }
                 else if (role == "LAB       ")
                 {
-                    DodajLaboranta frmDodajlaboranta = new DodajLaboranta(); // tutaj powinno być okno laboranta
-                    DialogResult res = frmDodajlaboranta.ShowDialog(this);
+                    Laborant frmlaborant = new Laborant(); // tutaj powinno być okno laboranta
+                    DialogResult res = frmlaborant.ShowDialog(this);
                     
 
                 }
@@ -64,6 +64,11 @@ namespace Przychodnia
                     DialogResult res = frmDodajRejestr.ShowDialog(this);
                     
 
+                }
+                else if (role == "ADM       ")
+                {
+                    Admin frmAdmin = new Admin();
+                    DialogResult res = frmAdmin.ShowDialog(this);
                 }
                 else if (role == null)
                 {

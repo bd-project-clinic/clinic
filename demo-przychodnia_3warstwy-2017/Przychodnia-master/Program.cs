@@ -18,7 +18,7 @@ namespace Przychodnia
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Rejestratorka());
             //Application.Run(new Lekarz());
-            //Application.Run(new Laborant());
+            Application.Run(new Laborant());
             Application.Run(new Admin());
             Application.Run(new Logowanie());
 
