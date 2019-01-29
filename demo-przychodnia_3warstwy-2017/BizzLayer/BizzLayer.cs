@@ -42,7 +42,7 @@ namespace BizzLayer
             else
             {
                 var res = from research in dc.Exam_Labs
-                          where (research.dt_zle.Date == data) && (research.status == 1) //|| (research.status == 4)
+                          where (research.dt_zle.Date == data) && ((research.status == 1) || (research.status == 4))
                           select
                           new
                           {
@@ -66,7 +66,7 @@ namespace BizzLayer
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             var res = from research in dc.Exam_Labs
-                      where (research.status == 1) //|| (research.status == 4)
+                      where (research.status == 1) || (research.status == 4)
                       select
                        new
                        {
@@ -81,6 +81,51 @@ namespace BizzLayer
                            research.status
                        };
             return res;
+        }
+        public static IQueryable<Exam_Lab> GetLabInfo(Exam_Lab searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from el in dc.Exam_Labs
+                      where
+                      (searchCrit.Id_Exam_lab == 0) || (el.Id_Exam_lab == searchCrit.Id_Exam_lab)
+
+                      select el;
+            return res;
+        }
+
+        public static void UpdateExamData(Exam_Lab lab)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Exam_Labs
+                           where el.Id_Exam_lab == lab.Id_Exam_lab
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.results = lab.results;
+          
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static void SendExamData(Exam_Lab lab)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Exam_Labs
+                           where el.Id_Exam_lab == lab.Id_Exam_lab
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.status = 2;
+                res.dt_wyk = DateTime.Now;
+
+                dc.SubmitChanges();
+
+            }
+
         }
     }
 
