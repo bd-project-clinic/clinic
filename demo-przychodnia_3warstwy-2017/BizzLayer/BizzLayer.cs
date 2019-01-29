@@ -597,7 +597,7 @@ namespace BizzLayer
             {
                 var res = new User();
                 res.uname = usr.uname;
-                res.pass = usr.pass;
+                res.pass = CreateMD5(usr.pass);
                 res.role = usr.role;
                 res.DT_retire = usr.DT_retire;
                 dc.Users.InsertOnSubmit(res);
