@@ -11,21 +11,34 @@ using BizzLayer;
 using DataLayer;
 
 
+
 namespace Przychodnia
 {
     public partial class Lekarz : Form
     {
+        int id_wizyty;
+        string status_wizyty;
+        string imie;
+        string nazwisko;
+        string stan;
+        string rejestracja;
+        string diagnoza;
+        string opis;
+
         public Lekarz()
         {
             InitializeComponent();
             dataGridView1.Columns.Clear();
             dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
+
+            
             //dataGridView1.DataSource = RegistrationFacade.GetVisits(null);
         }
        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
 
         }
 
@@ -49,17 +62,10 @@ namespace Przychodnia
 
 
         }
-        int id_wizyty;
-        string status_wizyty;
+       
+
         private void button1_Click(object sender, EventArgs e)
         {
-            string imie;
-            string nazwisko;
-            string diagnoza;
-            string opis;
-            string stan;
-            string rejestracja;
-         
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
             int id;
             if (selectedRowCount == 1)
@@ -80,13 +86,8 @@ namespace Przychodnia
                 id_wizyty = id;
                 status_wizyty = stan;
             }
-
             else if (selectedRowCount > 1)
                 MessageBox.Show("Zaznaczyles wiecej niz jedna wizyte!");
-            else if (selectedRowCount == 0)
-                MessageBox.Show("Nie zaznaczyles wizyty!");
-
-
         }
 
         private void label1_Click(object sender, EventArgs e)

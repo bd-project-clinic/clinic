@@ -59,7 +59,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(2, 393);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(942, 209);
+            this.dataGridView1.Size = new System.Drawing.Size(792, 216);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -69,7 +69,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
-            this.dateTimePicker1.Value = new System.DateTime(2019, 1, 25, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2019, 2, 6, 0, 0, 0, 0);
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // button1
@@ -229,7 +229,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(392, 304);
+            this.button6.Location = new System.Drawing.Point(800, 458);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(134, 39);
             this.button6.TabIndex = 25;
