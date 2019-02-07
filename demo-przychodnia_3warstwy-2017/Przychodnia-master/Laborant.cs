@@ -30,7 +30,7 @@ namespace Przychodnia
             textBox1.Text = labDTO.results;
             textBox2.Text = labDTO.supervisor_comments;
             textBox3.Text = labDTO.doctor_comments;
-            textBox4.Text = labDTO.SL_Exam.type;
+            textBox4.Text = labDTO.SL_Exam.Code.ToString();
 
         }
 
