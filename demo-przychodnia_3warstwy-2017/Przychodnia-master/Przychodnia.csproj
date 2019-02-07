@@ -61,6 +61,12 @@
     <Compile Include="Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="BadanieFizykalne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BadanieFizykalne.Designer.cs">
+      <DependentUpon>BadanieFizykalne.cs</DependentUpon>
+    </Compile>
     <Compile Include="DodajKierownika.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WykazBadanFiz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WykazBadanFiz.Designer.cs">
+      <DependentUpon>WykazBadanFiz.cs</DependentUpon>
+    </Compile>
     <Compile Include="WyswietlBadLabPacjenta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +173,9 @@
     </Compile>
     <EmbeddedResource Include="Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BadanieFizykalne.resx">
+      <DependentUpon>BadanieFizykalne.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DodajKierownika.resx">
       <DependentUpon>DodajKierownika.cs</DependentUpon>
@@ -213,6 +228,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WykazBadanFiz.resx">
+      <DependentUpon>WykazBadanFiz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WyswietlBadLabPacjenta.resx">
       <DependentUpon>WyswietlBadLabPacjenta.cs</DependentUpon>
     </EmbeddedResource>
