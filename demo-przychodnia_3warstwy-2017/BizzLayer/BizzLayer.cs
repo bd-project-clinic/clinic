@@ -554,8 +554,7 @@ namespace BizzLayer
                            select el).SingleOrDefault();
                 if (res == null)
                     return;
-                res.Status = vis.Status;
-                dc.Visits.InsertOnSubmit(res);
+                res.Status = vis.Status;  
                 dc.SubmitChanges();
 
             }
@@ -563,23 +562,65 @@ namespace BizzLayer
         }
 
 
-    }
- //=======================================================================================================================================
-    static public class ExamFacade
+        public static IQueryable SearchPatients_in_Visits(Patient searchCrit)
         {
-            public static IQueryable GetSL_Exam()
-            {
-                DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
-                var res = from ex in dc.SL_Exams
-                          select
-                           new
-                           {
-                               ex.Code,
-                               ex.type,
-                               ex.name,
-                           };
-                return res;
-            }
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from vis in dc.Visits
+                      where
+                      (vis.Patient.FirstName == searchCrit.FirstName || vis.Patient.LastName == searchCrit.LastName)
+                      select
+                      new
+                      {
+                          vis.Id_Vis,
+                          vis.Patient.FirstName,
+                          vis.Patient.LastName,
+                          vis.Description,
+                          vis.Diagnosis,
+                          vis.Status,
+                          vis.DT_Reg
+                      }; 
+            return res;
+
+        }
+
+        
+
+
+
+    }
+    //=======================================================================================================================================
+    static public class ExamFacade
+    {
+        public static IQueryable GetSL_Exam()
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.SL_Exams
+                      where ex.type == "Lab"
+                      select
+                       new
+                       {
+                           ex.Code,
+                           ex.type,
+                           ex.name,
+                       };
+            return res;
+        }
+
+        public static IQueryable GetSL_Exam_Fiz()
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.SL_Exams
+                      where ex.type == "Fiz"
+                      select
+                       new
+                       {
+                           ex.Code,
+                           ex.type,
+                           ex.name,
+                       };
+            return res;
+        }
+
         public static void NewExam_Lab(Exam_Lab exam)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
@@ -618,8 +659,15 @@ namespace BizzLayer
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             var res = from ex in dc.SL_Exams
                       where
-                      (ex.type==searchCrit.type || ex.name==searchCrit.name)
-                      select ex;
+                      (ex.type == searchCrit.type || ex.name == searchCrit.name)
+                      select
+                      new
+                      {
+                          ex.Code,
+                          ex.type,
+                          ex.name,
+                      };
+
             return res;
         }
 
@@ -629,7 +677,13 @@ namespace BizzLayer
             var res = from ex in dc.SL_Exams
                       where
                       (ex.Code == searchCrit.Code)
-                      select ex;
+                      select
+                      new
+                      {
+                          ex.Code,
+                          ex.type,
+                          ex.name,
+                      };
             return res;
         }
 
@@ -637,7 +691,7 @@ namespace BizzLayer
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             var res = from ex in dc.Exam_Labs
-                      where(ex.Id_Vis==exam.Id_Vis)
+                      where (ex.Id_Vis == exam.Id_Vis)
                       select
                        new
                        {
@@ -651,13 +705,63 @@ namespace BizzLayer
                        };
             return res;
         }
+
+        public static void NewExam_Fiz(Exam_Physical exam)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+                var res = new Exam_Physical();
+
+                res.Id_Vis = exam.Id_Vis;
+                res.Result = exam.Result;
+                res.Code = exam.Code;
+                dc.Exam_Physicals.InsertOnSubmit(res);
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static IQueryable GetExam_Fiz(Exam_Physical exam)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.Exam_Physicals
+                      where (ex.Id_Vis == exam.Id_Vis)
+                      select
+                       new
+                       {
+                           ex.Id_exam_ph,
+                           ex.Result,
+                           ex.Code,
+                           ex.Id_Vis,
+                       };
+            return res;
+        }
+
+        public static IQueryable GetResults(Exam_Physical exam)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from ex in dc.Exam_Physicals
+                      where (ex.Id_Vis == exam.Id_Vis)
+                      select
+                       new
+                       {
+                           ex.Id_exam_ph,
+                           ex.SL_Exam.name,
+                           ex.Result,
+                           ex.Code,
+   
+                       };
+            return res;
+        }
     }
-  //=======================================================================================================================================
+        //=======================================================================================================================================
 
 
-        
 
-    static public class AdminFacade
+
+        static public class AdminFacade
     {
         public static void NewDoctorData(Doctor doc)
         {
