@@ -282,5 +282,14 @@ namespace Przychodnia
           
 
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            Visit vis = new Visit();
+            vis.Id_Vis = id_wizyty;
+            vis.Status = "PROG";
+            DoctorFacade.UpdateVisitStat(vis);
+            MessageBox.Show("Wizyta rozpoczęta. Odśwież wizyty.");
+        }
     }
 }
