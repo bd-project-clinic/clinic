@@ -17,6 +17,7 @@ namespace Przychodnia
         public Laborant()
         {
             InitializeComponent();
+            dataGridView1.DataSource = LabFacade.GetResearch(null);
         }
 
         private void viewInfo()
@@ -100,9 +101,19 @@ namespace Przychodnia
             Exam_Lab labDTO = new Exam_Lab();
             labDTO.Id_Exam_lab = (int)(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value);
 
+            if((int)(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[8].Value) != 1)
+            {
+                MessageBox.Show("wybrano badanie z niepoprawnym statusem");
+                    return;
+            }
+
             DialogResult DeleteConfirm = MessageBox.Show("Czy na pewno chcesz przesłać te badanie do sprawdzenia ?", "UWAGA", MessageBoxButtons.YesNo);
             if (DeleteConfirm == DialogResult.Yes)
             {
+                
+                labDTO.results = textBox1.Text;
+                LabFacade.UpdateExamData(labDTO);
+
                 LabFacade.SendExamData(labDTO);
                 dataGridView1.DataSource = LabFacade.GetResearch(null);
             }
@@ -110,6 +121,11 @@ namespace Przychodnia
             {
                 return;
             }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            viewInfo();
         }
     }
 }

@@ -139,6 +139,12 @@
     <Compile Include="Rejestratorka.Designer.cs">
       <DependentUpon>Rejestratorka.cs</DependentUpon>
     </Compile>
+    <Compile Include="Szef_laborant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Szef_laborant.Designer.cs">
+      <DependentUpon>Szef_laborant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wizyta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Rejestratorka.resx">
       <DependentUpon>Rejestratorka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Szef_laborant.resx">
+      <DependentUpon>Szef_laborant.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Wizyta.resx">
       <DependentUpon>Wizyta.cs</DependentUpon>

@@ -45,7 +45,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewVisits = new System.Windows.Forms.DataGridView();
             this.btnShowVisists = new System.Windows.Forms.Button();
@@ -62,7 +61,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(150, 20);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "K";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label1
@@ -130,7 +128,9 @@
             this.Pesel,
             this.Lekarz});
             this.dataGridView1.Location = new System.Drawing.Point(22, 68);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(547, 254);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -162,7 +162,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(594, 68);
+            this.button2.Location = new System.Drawing.Point(594, 325);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(155, 23);
             this.button2.TabIndex = 8;
@@ -172,7 +172,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(594, 185);
+            this.button3.Location = new System.Drawing.Point(594, 97);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(155, 20);
             this.button3.TabIndex = 9;
@@ -182,7 +182,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(594, 156);
+            this.button4.Location = new System.Drawing.Point(594, 68);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(155, 23);
             this.button4.TabIndex = 10;
@@ -190,30 +190,22 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(594, 97);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(155, 23);
-            this.button5.TabIndex = 11;
-            this.button5.Text = "Usuń wizytę";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // dataGridViewVisits
             // 
             this.dataGridViewVisits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewVisits.Location = new System.Drawing.Point(22, 352);
             this.dataGridViewVisits.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewVisits.MultiSelect = false;
             this.dataGridViewVisits.Name = "dataGridViewVisits";
             this.dataGridViewVisits.RowTemplate.Height = 24;
+            this.dataGridViewVisits.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewVisits.Size = new System.Drawing.Size(765, 196);
             this.dataGridViewVisits.TabIndex = 12;
             this.dataGridViewVisits.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // btnShowVisists
             // 
-            this.btnShowVisists.Location = new System.Drawing.Point(310, 325);
+            this.btnShowVisists.Location = new System.Drawing.Point(202, 324);
             this.btnShowVisists.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowVisists.Name = "btnShowVisists";
             this.btnShowVisists.Size = new System.Drawing.Size(179, 23);
@@ -224,7 +216,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(150, 325);
+            this.button7.Location = new System.Drawing.Point(42, 325);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(155, 22);
             this.button7.TabIndex = 15;
@@ -234,7 +226,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(494, 327);
+            this.dateTimePicker1.Location = new System.Drawing.Point(386, 327);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 16;
@@ -249,7 +241,6 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.btnShowVisists);
             this.Controls.Add(this.dataGridViewVisits);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -285,7 +276,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nazwisko;
         private System.Windows.Forms.DataGridViewTextBoxColumn Imie;

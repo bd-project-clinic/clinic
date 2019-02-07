@@ -9,8 +9,7 @@ using DataLayer;
 // 
 namespace BizzLayer
 {
-
-    static public class LabFacade
+    static public class SLabFacade
     {
         public static IQueryable GetResearchData(DateTime data)
         {
@@ -19,11 +18,11 @@ namespace BizzLayer
             if (data == DateTime.Today)
             {
                 var res = from research in dc.Exam_Labs
-                          where (research.dt_zle.Date == test) && (research.status == 1) //|| (research.status == 4)
+                          where (research.dt_zle.Date == test) 
                           select
                           new
                           {
-                          
+
                               research.Id_Exam_lab,
                               research.Code,
                               research.Id_Lab,
@@ -33,8 +32,8 @@ namespace BizzLayer
                               research.dt_zat,
                               research.Id_Vis,
                               research.status
-                             
-                              
+
+
                           };
                 return res;
 
@@ -42,7 +41,7 @@ namespace BizzLayer
             else
             {
                 var res = from research in dc.Exam_Labs
-                          where (research.dt_zle.Date == data) && ((research.status == 1) || (research.status == 4))
+                          where (research.dt_zle.Date == data) 
                           select
                           new
                           {
@@ -66,12 +65,141 @@ namespace BizzLayer
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             var res = from research in dc.Exam_Labs
-                      where (research.status == 1) || (research.status == 4)
+                     
                       select
                        new
                        {
                            research.Id_Exam_lab,
                            research.Code,
+                           research.Id_Lab,
+                           research.Id_SLab,
+                           research.dt_zle,
+                           research.dt_wyk,
+                           research.dt_zat,
+                           research.Id_Vis,
+                           research.status
+                       };
+            return res;
+        }
+
+        public static void UpdateExamData(Exam_Lab lab)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Exam_Labs
+                           where el.Id_Exam_lab == lab.Id_Exam_lab
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.supervisor_comments = lab.supervisor_comments;
+
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void AcceptExamData(Exam_Lab lab)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Exam_Labs
+                           where el.Id_Exam_lab == lab.Id_Exam_lab
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.status = 3;
+                res.dt_zat = DateTime.Now;
+
+                dc.SubmitChanges();
+
+            }
+
+        }
+
+        public static void DeclineExamData(Exam_Lab lab)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Exam_Labs
+                           where el.Id_Exam_lab == lab.Id_Exam_lab
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                res.status = 4;
+               
+                res.dt_zat = DateTime.Now;
+
+                dc.SubmitChanges();
+
+            }
+
+        }
+    }
+
+
+
+    static public class LabFacade
+    {
+        public static IQueryable GetResearchData(DateTime data)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var test = DateTime.Today;
+            if (data == DateTime.Today)
+            {
+                var res = from research in dc.Exam_Labs
+                          where (research.dt_zle.Date == test) 
+                          select
+                          new
+                          {
+                          
+                              research.Id_Exam_lab,
+                              research.SL_Exam.name,
+                              research.Id_Lab,
+                              research.Id_SLab,
+                              research.dt_zle,
+                              research.dt_wyk,
+                              research.dt_zat,
+                              research.Id_Vis,
+                              research.status
+                             
+                              
+                          };
+                return res;
+
+            }
+            else
+            {
+                var res = from research in dc.Exam_Labs
+                          where (research.dt_zle.Date == data) 
+                          select
+                          new
+                          {
+                              research.Id_Exam_lab,
+                              research.SL_Exam.name,
+                              research.Id_Lab,
+                              research.Id_SLab,
+                              research.dt_zle,
+                              research.dt_wyk,
+                              research.dt_zat,
+                              research.Id_Vis,
+                              research.status
+
+                          };
+                return res;
+            }
+
+
+        }
+        public static IQueryable GetResearch(Visit searchCrit)
+        {
+            DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
+            var res = from research in dc.Exam_Labs
+                       
+                      select
+                       new
+                       {
+                           research.Id_Exam_lab,
+                           research.SL_Exam.name,
                            research.Id_Lab,
                            research.Id_SLab,
                            research.dt_zle,

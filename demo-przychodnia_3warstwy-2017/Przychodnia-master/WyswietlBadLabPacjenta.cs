@@ -48,7 +48,7 @@ namespace Przychodnia
                 if (status==3)
                 {
                     wynik = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                    komentarz = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+                    komentarz = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
                     textBox1.Text = wynik;
                     textBox2.Text = komentarz;
                 }
