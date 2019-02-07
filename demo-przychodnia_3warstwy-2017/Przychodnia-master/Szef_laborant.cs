@@ -20,6 +20,12 @@ namespace Przychodnia
             dataGridView1.DataSource = SLabFacade.GetResearch(null);
         }
 
+        private int SlabID;
+        public Szef_laborant(int Id):this ()
+        {
+            SlabID = Id;
+        }
+
         private void viewInfo()
         {
 
@@ -86,6 +92,7 @@ namespace Przychodnia
             if (DeleteConfirm == DialogResult.Yes)
             {
                 labDTO.supervisor_comments = textBox2.Text;
+                labDTO.Id_SLab = SlabID;
                 SLabFacade.UpdateExamData(labDTO);
 
                 SLabFacade.AcceptExamData(labDTO);
@@ -113,6 +120,7 @@ namespace Przychodnia
             if (DeleteConfirm == DialogResult.Yes)
             {
                 labDTO.supervisor_comments = textBox2.Text;
+                labDTO.Id_SLab = SlabID;
                 SLabFacade.UpdateExamData(labDTO);
 
                 SLabFacade.DeclineExamData(labDTO);
@@ -130,6 +138,11 @@ namespace Przychodnia
         }
 
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

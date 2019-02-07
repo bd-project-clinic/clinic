@@ -20,6 +20,12 @@ namespace Przychodnia
             dataGridView1.DataSource = LabFacade.GetResearch(null);
         }
 
+        private int labID;
+        public Laborant(int Id):this ()
+        {
+            labID = Id;
+        }
+
         private void viewInfo()
         {
 
@@ -112,6 +118,7 @@ namespace Przychodnia
             {
                 
                 labDTO.results = textBox1.Text;
+                labDTO.Id_Lab = labID;
                 LabFacade.UpdateExamData(labDTO);
 
                 LabFacade.SendExamData(labDTO);

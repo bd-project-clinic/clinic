@@ -92,6 +92,7 @@ namespace BizzLayer
                 if (res == null)
                     return;
                 res.supervisor_comments = lab.supervisor_comments;
+                res.Id_SLab = lab.Id_SLab;
 
                 dc.SubmitChanges();
 
@@ -109,6 +110,7 @@ namespace BizzLayer
                     return;
                 res.status = 3;
                 res.dt_zat = DateTime.Now;
+                
 
                 dc.SubmitChanges();
 
@@ -128,6 +130,7 @@ namespace BizzLayer
                 res.status = 4;
                
                 res.dt_zat = DateTime.Now;
+                
 
                 dc.SubmitChanges();
 
@@ -231,6 +234,7 @@ namespace BizzLayer
                 if (res == null)
                     return;
                 res.results = lab.results;
+                res.Id_Lab = lab.Id_Lab;
           
                 dc.SubmitChanges();
 
@@ -326,6 +330,7 @@ namespace BizzLayer
                 res.Id_Doc = pat.Id_Doc;
                 res.Description = " ";
                 res.Diagnosis = " ";
+                res.Id_Reg = pat.Id_Reg;
 
                 dc.Visits.InsertOnSubmit(res);
                 dc.SubmitChanges();
@@ -809,6 +814,69 @@ namespace BizzLayer
                 return check.role; // jeśli nie jest null, to zwracamy stringa z rolą. 
             }
             return null;
+
+            
         }
+
+        public static int GetUsersLoginLab(User check_usr) // funkcja sprawdzająca uzytkownika w bazie. 
+        {
+            var db = new DataClassesClinicDataContext();
+            User check = null;
+            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == CreateMD5(check_usr.pass)); // sprawdzamy czy check_usr znajduje się w bazie. 
+            if (check != null)
+            {
+                Lab test = null;
+                test = db.Lab.SingleOrDefault(p => p.uname == check_usr.uname);
+                if (test != null)
+                {
+                    return test.Id_Lab;
+                }
+            }
+            return 0;
+
+
+        }
+
+        public static int GetUsersLoginSLab(User check_usr) // funkcja sprawdzająca uzytkownika w bazie. 
+        {
+            var db = new DataClassesClinicDataContext();
+            User check = null;
+            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == CreateMD5(check_usr.pass)); // sprawdzamy czy check_usr znajduje się w bazie. 
+            if (check != null)
+            {
+                SLab test = null;
+                test = db.SLabs.SingleOrDefault(p => p.uname == check_usr.uname);
+                if (test != null)
+                {
+                    return test.Id_SLab;
+                }
+            }
+            return 0;
+
+
+        }
+
+        public static int GetUsersLoginReg(User check_usr) // funkcja sprawdzająca uzytkownika w bazie. 
+        {
+            var db = new DataClassesClinicDataContext();
+            User check = null;
+            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == CreateMD5(check_usr.pass)); // sprawdzamy czy check_usr znajduje się w bazie. 
+            if (check != null)
+            {
+                Register test = null;
+                test = db.Register.SingleOrDefault(p => p.uname == check_usr.uname);
+                if (test != null)
+                {
+                    return test.Id_Reg;
+                }
+            }
+            return 0;
+
+
+        }
+
+
+
+
     }
 }

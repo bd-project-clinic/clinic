@@ -23,7 +23,11 @@ namespace Przychodnia
             InitializeComponent();
             dataGridViewVisits.DataSource = RegistrationFacade.GetVisits(null);
         }
-
+        private int registerId;
+        public Rejestratorka(int Id):this ()
+        {
+            registerId = Id;
+        }
         private void viewPatients ()
         {
             // var result = RegistrationFacade.GetPatients(null);
@@ -130,7 +134,7 @@ namespace Przychodnia
                 MessageBox.Show(String.Format("Wybrano pacjenta o identyfikatorze {0}", patientSearchCriteria.Id_Pat));
 
             }
-            RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta(patientSearchCriteria.Id_Pat);
+            RejestracjaPacjenta frmRejestracjaPacjenta = new RejestracjaPacjenta(patientSearchCriteria.Id_Pat, registerId);
             DialogResult res = frmRejestracjaPacjenta.ShowDialog(this);
             
             if (res == DialogResult.OK)

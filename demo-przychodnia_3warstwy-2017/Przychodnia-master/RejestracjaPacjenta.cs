@@ -23,10 +23,12 @@ namespace Przychodnia
         }
 
         private int patientId;
+        private int registerid;
 
-        public RejestracjaPacjenta(int Id):this ()
+        public RejestracjaPacjenta(int Id, int regID):this ()
         {
             patientId = Id;
+            registerid = regID;
         }
 
         private void viewPatient()
@@ -73,6 +75,7 @@ namespace Przychodnia
             visitDTO.DT_Reg = Convert.ToDateTime(textBox1.Text);
             visitDTO.Id_Pat = patientId;
             visitDTO.Id_Doc = (int)(dataGridView1.Rows[dataGridView1.CurrentCell.RowIndex].Cells[0].Value);
+            visitDTO.Id_Reg = registerid;
 
             RegistrationFacade.NewVisitData(visitDTO);
 
