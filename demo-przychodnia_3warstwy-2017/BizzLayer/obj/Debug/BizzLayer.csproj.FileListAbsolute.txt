@@ -54,3 +54,13 @@ C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj
 C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.csproj.CopyComplete
 C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.dll
 C:\Users\Bartek\Source\Repos\clinic\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.pdb
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\BizzLayer.dll
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\BizzLayer.pdb
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\DataLayer.dll
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\DataLayer.pdb
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\bin\Debug\DataLayer.dll.config
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.csprojAssemblyReference.cache
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.csproj.CoreCompileInputs.cache
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.csproj.CopyComplete
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.dll
+C:\Users\ryba\Source\Repos\clinic10\demo-przychodnia_3warstwy-2017\BizzLayer\obj\Debug\BizzLayer.pdb

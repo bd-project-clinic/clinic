@@ -91,17 +91,17 @@
     <Compile Include="DodajUsera.Designer.cs">
       <DependentUpon>DodajUsera.cs</DependentUpon>
     </Compile>
+    <Compile Include="EdycjaUserow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdycjaUserow.Designer.cs">
+      <DependentUpon>EdycjaUserow.cs</DependentUpon>
+    </Compile>
     <Compile Include="EdycjaPacjenta.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EdycjaPacjenta.Designer.cs">
       <DependentUpon>EdycjaPacjenta.cs</DependentUpon>
-    </Compile>
-    <Compile Include="EdycjaUsera.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EdycjaUsera.Designer.cs">
-      <DependentUpon>EdycjaUsera.cs</DependentUpon>
     </Compile>
     <Compile Include="Laborant.cs">
       <SubType>Form</SubType>
@@ -183,11 +183,11 @@
     <EmbeddedResource Include="DodajUsera.resx">
       <DependentUpon>DodajUsera.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EdycjaUserow.resx">
+      <DependentUpon>EdycjaUserow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EdycjaPacjenta.resx">
       <DependentUpon>EdycjaPacjenta.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="EdycjaUsera.resx">
-      <DependentUpon>EdycjaUsera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Laborant.resx">
       <DependentUpon>Laborant.cs</DependentUpon>
