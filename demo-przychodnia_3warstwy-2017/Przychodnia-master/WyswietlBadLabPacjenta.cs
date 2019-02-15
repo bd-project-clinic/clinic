@@ -52,13 +52,18 @@ namespace Przychodnia
                     textBox1.Text = wynik;
                     textBox2.Text = komentarz;
                 }
-                else MessageBox.Show("Badanie jest w trakcie!");
+                else MessageBox.Show("Brak badań/wyników badań!");
 
             }
             else if (selectedRowCount > 1)
                 MessageBox.Show("Zaznaczyles wiecej niz jedno badanie!");
             else if (selectedRowCount == 0)
                 MessageBox.Show("Nie zaznaczyles badania!");
+
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
 
         }
     }
