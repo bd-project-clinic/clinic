@@ -55,19 +55,6 @@ namespace Przychodnia
                     DialogResult res = frmLekarz.ShowDialog(this);
                                       
                 }
-            else if (role == "SLAB       ")
-            {
-
-
-                SLab Slab1 = new SLab();
-                int IDSlab = AdminFacade.GetUsersLoginSLab(user_check);
-                Slab1.Id_SLab = IDSlab;
-
-                Laborant frmlaborant = new Laborant(Slab1.Id_SLab); // tutaj powinno być okno laboranta
-                DialogResult res = frmlaborant.ShowDialog(this);
-
-
-            }
             else if (role == "LAB       ")
                 {
 
@@ -81,8 +68,7 @@ namespace Przychodnia
                     
 
                 }
-
-            else if (role == "SLAB       ")
+            else if (role == "SLAB      ")
             {
 
 
