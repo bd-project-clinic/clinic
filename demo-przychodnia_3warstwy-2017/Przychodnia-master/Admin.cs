@@ -50,6 +50,7 @@ namespace Przychodnia
 
         private void button2_Click(object sender, EventArgs e)
         {
+           
             if (dataGridViewVisits.Rows.Count == 0)
             {
                 MessageBox.Show("Brak Userów");
@@ -59,7 +60,7 @@ namespace Przychodnia
             
             userSearchCriteria = new User();
             userSearchCriteria.uname = (string)(dataGridViewVisits.Rows[dataGridViewVisits.CurrentCell.RowIndex].Cells[0].Value);
-
+            userSearchCriteria.role = (string)(dataGridViewVisits.Rows[dataGridViewVisits.CurrentCell.RowIndex].Cells[3].Value);
 
 
             if (userSearchCriteria.uname == "")
@@ -69,12 +70,17 @@ namespace Przychodnia
             }
             else
             {
-                MessageBox.Show(String.Format("Wybrano pacjenta o identyfikatorze {0}", userSearchCriteria.uname));
+                MessageBox.Show(String.Format("Wybrano usera o nazwie {0}", userSearchCriteria.uname));
 
             }
-            EdycjaUsera frmEdycjaPacjenta = new EdycjaUsera(userSearchCriteria.uname);
-            DialogResult res = frmEdycjaPacjenta.ShowDialog(this);
+           
+            
+            
+                EdycjaUserow frmEdycjaPacjenta = new EdycjaUserow(userSearchCriteria.uname,userSearchCriteria.role);
+                DialogResult res = frmEdycjaPacjenta.ShowDialog(this);
+
             // button1_Click(null, null); :) :)
+            AdminFacade.DeleteUserData();
             viewUsers();
         }
 
@@ -85,29 +91,18 @@ namespace Przychodnia
 
         private void button3_Click(object sender, EventArgs e)
         {
+            AdminFacade.DeleteUserData();
             viewUsers();
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (dataGridViewVisits.Rows.Count == 0)
-            {
-                MessageBox.Show("Brak użytkowników");
-                return;
-            }
-
-            string VisDeleteId = (string)(dataGridViewVisits.Rows[dataGridViewVisits.CurrentCell.RowIndex].Cells[0].Value);
-
-            DialogResult DeleteConfirm = MessageBox.Show("Czy na pewno chcesz usunąć wybranego użytkownika ?", "UWAGA", MessageBoxButtons.YesNo);
-            if (DeleteConfirm == DialogResult.Yes)
-            {
-                AdminFacade.DeleteUserData(VisDeleteId);
+            
+                AdminFacade.DeleteUserData();
                 dataGridViewVisits.DataSource = AdminFacade.GetUsers(userSearchCriteria);
-            }
-            else if (DeleteConfirm == DialogResult.No)
-            {
-                return;
-            }
+            
+          
 
         }
     }

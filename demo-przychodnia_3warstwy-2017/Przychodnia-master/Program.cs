@@ -21,8 +21,8 @@ namespace Przychodnia
             //Application.Run(new Laborant());
             //Application.Run(new Szef_laborant());
 
-            //Application.Run(new Admin());
-            Application.Run(new Logowanie());
+            Application.Run(new Admin());
+           // Application.Run(new Logowanie());
 
         }
     }

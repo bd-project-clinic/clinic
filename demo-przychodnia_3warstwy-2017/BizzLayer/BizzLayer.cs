@@ -802,18 +802,18 @@ namespace BizzLayer
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
 
-               
+
                 var res = new SLab();
                 res.Name = lb.Name;
                 res.Surname = lb.Surname;
                 res.uname = lb.uname;
                 dc.SLabs.InsertOnSubmit(res);
                 dc.SubmitChanges();
-               
+
             }
 
         }
-            public static void NewRegData(Register rg)
+        public static void NewRegData(Register rg)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
@@ -858,7 +858,7 @@ namespace BizzLayer
                       select el;
             return res;
         }
-        
+
         public static void UpdateUserData(User usr)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
@@ -868,24 +868,112 @@ namespace BizzLayer
                            select el).SingleOrDefault();
                 if (res == null)
                     return;
-                res.DT_retire = usr.DT_retire;
-                
+                if (usr.DT_retire != null)
+                    res.DT_retire = usr.DT_retire;
+                if (usr.pass != "")
+                    res.pass = usr.pass;
                 dc.SubmitChanges();
 
             }
 
         }
-        public static void DeleteUserData(string uname)
+        public static void UpdateSLAbData(SLab usr)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
-                var res = (from el in dc.Users
-                           where el.uname == uname
+                var res = (from el in dc.SLabs
+                           where el.uname == usr.uname
                            select el).SingleOrDefault();
                 if (res == null)
                     return;
-                dc.Users.DeleteOnSubmit(res);
+                if (usr.Name != "")
+                    res.Name = usr.Name;
+                if (usr.Surname != "")
+                    res.Surname = usr.Surname;
+
                 dc.SubmitChanges();
+
+            }
+
+        }
+        public static void UpdateLabData(Lab usr)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Lab
+                           where el.uname == usr.uname
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                if (usr.Name != "")
+                    res.Name = usr.Name;
+                if (usr.Surname != "")
+                    res.Surname = usr.Surname;
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void UpdateDoctorData(Doctor usr)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Doctors
+                           where el.uname == usr.uname
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                if (usr.Name != "")
+                    res.Name = usr.Name;
+                if (usr.Surname != "")
+                    res.Surname = usr.Surname;
+                if (usr.NPWZ != "")
+                    res.NPWZ = usr.NPWZ;
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void UpdateRegisterData(Register usr)
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+                var res = (from el in dc.Register
+                           where el.uname == usr.uname
+                           select el).SingleOrDefault();
+                if (res == null)
+                    return;
+                if (usr.Name != "")
+                    res.Name = usr.Name;
+                if (usr.Surname != "")
+                    res.Surname = usr.Surname;
+                dc.SubmitChanges();
+
+            }
+
+        }
+        public static void DeleteUserData()
+        {
+            using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
+            {
+
+
+
+
+
+
+
+                var res = from el in dc.Users
+                          where el.DT_retire < DateTime.Today
+                          select el;
+                if (res == null)
+                    return;
+
+
+                dc.Users.DeleteAllOnSubmit(res);
+                dc.SubmitChanges();
+
+
 
             }
 
