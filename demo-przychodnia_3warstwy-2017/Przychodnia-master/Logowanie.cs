@@ -51,7 +51,11 @@ namespace Przychodnia
             
                 if (role == "DOC       ")
                 {
-                    Lekarz frmLekarz = new Lekarz();
+                    Doctor doc1 = new Doctor();
+                    int IDdoc = AdminFacade.GetUsersLoginDoctor(user_check);
+                    doc1.Id_Doc = IDdoc;
+
+                    Lekarz frmLekarz = new Lekarz(doc1.Id_Doc);
                     DialogResult res = frmLekarz.ShowDialog(this);
                                       
                 }

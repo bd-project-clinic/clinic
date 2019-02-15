@@ -450,10 +450,11 @@ namespace BizzLayer
     //============================================================================================================================
     static public class DoctorFacade
     {
-        public static IQueryable GetVisits(Visit searchCrit)  //dodac sort by?
+        public static IQueryable GetVisits(Visit searchCrit,int id)  //dodac sort by?
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             var res = from vis in dc.Visits
+                      where (id == vis.Id_Doc)
                       select
                        new
                        {
@@ -470,14 +471,14 @@ namespace BizzLayer
         }
 
 
-        public static IQueryable GetVisits(DateTime data)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
+        public static IQueryable GetVisits(DateTime data,int id)       //pokazanie lekarzowi dzisiejszych zaplanowanych wizyt
         {
             DataClassesClinicDataContext dc = new DataClassesClinicDataContext();
             DateTime test = DateTime.Today;
             if (data == DateTime.Today)
             {
                 var res = from vis in dc.Visits
-                          where (vis.DT_Reg.Date == test)
+                          where (vis.DT_Reg.Date == test) && (id == vis.Id_Doc)
                           select
                           new
                           {
@@ -953,6 +954,25 @@ namespace BizzLayer
                 if (test != null)
                 {
                     return test.Id_SLab;
+                }
+            }
+            return 0;
+
+
+        }
+
+        public static int GetUsersLoginDoctor(User check_usr) // funkcja sprawdzająca uzytkownika w bazie. 
+        {
+            var db = new DataClassesClinicDataContext();
+            User check = null;
+            check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == CreateMD5(check_usr.pass)); // sprawdzamy czy check_usr znajduje się w bazie. 
+            if (check != null)
+            {
+                Doctor test = null;
+                test = db.Doctors.SingleOrDefault(p => p.uname == check_usr.uname);
+                if (test != null)
+                {
+                    return test.Id_Doc;
                 }
             }
             return 0;

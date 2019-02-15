@@ -32,12 +32,18 @@ namespace Przychodnia
         {
             InitializeComponent();
             dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
+            dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today, DocID);
             dateTimePicker1.Value = System.DateTime.Today;
             dataGridView1.ClearSelection();
             zmienna = textBox3.Text;
         }
-       
+
+        private int DocID;
+        public Lekarz(int Id):this ()
+        {
+            DocID = Id;
+        }
+
         private void Szczegoly()
         {
             Int32 selectedRowCount = dataGridView1.Rows.GetRowCount(DataGridViewElementStates.Selected);
@@ -84,7 +90,7 @@ namespace Przychodnia
         {
 
            dataGridView1.Columns.Clear();
-           dataGridView1.DataSource = DoctorFacade.GetVisits(dateTimePicker1.Value.Date);
+           dataGridView1.DataSource = DoctorFacade.GetVisits(dateTimePicker1.Value.Date, DocID);
 
 
 
@@ -193,7 +199,7 @@ namespace Przychodnia
 
          //   dataGridView1.ClearSelection();
             dataGridView1.Columns.Clear();
-            dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today);
+            dataGridView1.DataSource = DoctorFacade.GetVisits(DateTime.Today, DocID);
            /* textBox1.Text = null;
             textBox2.Text = null;
             label7.Text = null;
@@ -228,7 +234,7 @@ namespace Przychodnia
             dataGridView1.ClearSelection();
             dataGridView1.Columns.Clear();
             Visit allvisits = new Visit();
-            dataGridView1.DataSource = DoctorFacade.GetVisits(allvisits);
+            dataGridView1.DataSource = DoctorFacade.GetVisits(allvisits, DocID);
         }
      
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
