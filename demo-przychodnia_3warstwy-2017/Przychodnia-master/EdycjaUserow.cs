@@ -31,6 +31,7 @@ namespace Przychodnia
             usr.uname = patient_uname;
             if(textBox5.Text!= "")
             usr.DT_retire = Convert.ToDateTime(textBox5.Text);
+            if (textBox3.Text != "")
             usr.pass = AdminFacade.CreateMD5(textBox3.Text);
             AdminFacade.UpdateUserData(usr);
             if (patient_role == "SLAB      ")

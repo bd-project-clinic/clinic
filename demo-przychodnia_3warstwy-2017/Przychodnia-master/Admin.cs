@@ -80,7 +80,7 @@ namespace Przychodnia
                 DialogResult res = frmEdycjaPacjenta.ShowDialog(this);
 
             // button1_Click(null, null); :) :)
-            AdminFacade.DeleteUserData();
+            //AdminFacade.DeleteUserData();
             viewUsers();
         }
 
@@ -91,7 +91,7 @@ namespace Przychodnia
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AdminFacade.DeleteUserData();
+            //AdminFacade.DeleteUserData();
             viewUsers();
             
         }
@@ -99,7 +99,7 @@ namespace Przychodnia
         private void button4_Click(object sender, EventArgs e)
         {
             
-                AdminFacade.DeleteUserData();
+                //AdminFacade.DeleteUserData();
                 dataGridViewVisits.DataSource = AdminFacade.GetUsers(userSearchCriteria);
             
           

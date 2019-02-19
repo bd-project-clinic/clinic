@@ -52,19 +52,37 @@ namespace Przychodnia
 
         private void button1_Click(object sender, EventArgs e)
         {
-            User usr = new User();
-            usr.uname = textBox4.Text;
-            usr.pass = textBox3.Text;
-            usr.role = "DOC";
-            usr.DT_retire = Convert.ToDateTime(textBox6.Text);
-            AdminFacade.NewUserData(usr);
+            if (textBox4.Text == "")
+                MessageBox.Show("Nie wpisano nazwy użytkownika");
+            else if (textBox3.Text == "")
+                MessageBox.Show("Nie wpisano hasła");
+            else if (textBox1.Text == "")
+                MessageBox.Show("Nie wpisano imienia");
+            else if (textBox2.Text == "")
+                MessageBox.Show("Nie wpisano nazwiska");
+            else if (textBox5.Text == "")
+                MessageBox.Show("Nie wpisano NPWZ");
+            else if (textBox6.Text == "")
+                MessageBox.Show("Nie wpisano daty wygaśnięcia konta");
+            else
+            {
+                User usr = new User();
+                usr.uname = textBox4.Text;
+                usr.pass = textBox3.Text;
+                usr.role = "DOC";
+                usr.DT_retire = Convert.ToDateTime(textBox6.Text);
+                string check = AdminFacade.NewUserData(usr);
 
-            Doctor doc = new Doctor();
-            doc.uname = textBox4.Text;
-            doc.Name = textBox1.Text;
-            doc.Surname = textBox2.Text;
-            doc.NPWZ = textBox5.Text;
-            AdminFacade.NewDoctorData(doc);
+                Doctor doc = new Doctor();
+                doc.uname = textBox4.Text;
+                doc.Name = textBox1.Text;
+                doc.Surname = textBox2.Text;
+                doc.NPWZ = textBox5.Text;
+                if (check == "tak")
+                    AdminFacade.NewDoctorData(doc);
+                else
+                    MessageBox.Show("Login jest już używany");
+            }
         }
 
         private void label7_Click(object sender, EventArgs e)

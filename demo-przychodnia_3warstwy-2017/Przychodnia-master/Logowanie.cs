@@ -18,6 +18,7 @@ namespace Przychodnia
         {
             InitializeComponent();
             textBox2.UseSystemPasswordChar = true;
+           // AdminFacade.DeleteUserData();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace Przychodnia
                     Doctor doc1 = new Doctor();
                     int IDdoc = AdminFacade.GetUsersLoginDoctor(user_check);
                     doc1.Id_Doc = IDdoc;
-
+                
                     Lekarz frmLekarz = new Lekarz(doc1.Id_Doc);
                     DialogResult res = frmLekarz.ShowDialog(this);
                                       
@@ -107,7 +108,11 @@ namespace Przychodnia
                     MessageBox.Show("Nie znaleziono użytkownika w bazie, podaj poprawny login i hasło");
                    
                 }
+            else if (role == "expired")
+            {
+                MessageBox.Show("Konto wygasło, skontaktuj się z administratorem w celu jego przywrócenia");
 
+            }
 
             DialogResult = DialogResult.OK;
             this.Close();

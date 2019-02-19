@@ -43,10 +43,13 @@
             // 
             // dataGridViewVisits
             // 
+            this.dataGridViewVisits.AllowUserToAddRows = false;
+            this.dataGridViewVisits.AllowUserToDeleteRows = false;
             this.dataGridViewVisits.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewVisits.Location = new System.Drawing.Point(11, 147);
             this.dataGridViewVisits.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewVisits.Name = "dataGridViewVisits";
+            this.dataGridViewVisits.ReadOnly = true;
             this.dataGridViewVisits.RowTemplate.Height = 24;
             this.dataGridViewVisits.Size = new System.Drawing.Size(516, 292);
             this.dataGridViewVisits.TabIndex = 13;
@@ -120,7 +123,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(150, 20);
             this.textBox1.TabIndex = 16;
-            this.textBox1.Text = "K";
             // 
             // button3
             // 

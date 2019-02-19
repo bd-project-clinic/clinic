@@ -829,7 +829,7 @@ namespace BizzLayer
             }
 
         }
-        public static void NewUserData(User usr)
+        public static string NewUserData(User usr)
         {
             using (DataClassesClinicDataContext dc = new DataClassesClinicDataContext())
             {
@@ -839,10 +839,19 @@ namespace BizzLayer
                 res.role = usr.role;
                 res.DT_retire = usr.DT_retire;
                 dc.Users.InsertOnSubmit(res);
-                dc.SubmitChanges();
+                try
+                {
+                    dc.SubmitChanges();
+                }
+                catch 
+                {
+                    return "nie";
+                   
+                }
+
 
             }
-
+            return "tak";
         }
         public static IQueryable<User> GetUsers(User searchCrit)
         {
@@ -870,7 +879,7 @@ namespace BizzLayer
                     return;
                 if (usr.DT_retire != null)
                     res.DT_retire = usr.DT_retire;
-                if (usr.pass != "")
+                if (usr.pass != null)
                     res.pass = usr.pass;
                 dc.SubmitChanges();
 
@@ -1002,9 +1011,13 @@ namespace BizzLayer
             var db = new DataClassesClinicDataContext();
             User check = null;
             check = db.Users.SingleOrDefault(p => p.uname == check_usr.uname && p.pass == CreateMD5(check_usr.pass)); // sprawdzamy czy check_usr znajduje się w bazie. 
+            
             if (check != null)
             {
-                return check.role; // jeśli nie jest null, to zwracamy stringa z rolą. 
+                if (check.DT_retire < DateTime.Today)
+                    return "expired";
+                else
+                    return check.role; // jeśli nie jest null, to zwracamy stringa z rolą. 
             }
             return null;
 
